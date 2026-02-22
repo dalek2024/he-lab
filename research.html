@@ -1,137 +1,135 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Research | He Lab - Lanzhou University</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: { primary: '#003366', 'primary-light': '#004080' },
-          fontFamily: { serif: ['Cormorant Garamond', 'Georgia', 'serif'], sans: ['Inter', 'system-ui', 'sans-serif'] },
-        },
-      },
-    }
-  </script>
-</head>
-<body class="antialiased text-gray-800">
-  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200">
-    <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-14">
-        <a href="index.html" class="font-serif text-xl font-bold text-primary tracking-tight hover:text-primary-light transition-colors">He Lab</a>
-        <div class="hidden md:flex items-center gap-6">
-          <a href="index.html" class="text-gray-600 hover:text-primary transition-colors text-sm">Home</a>
-          <a href="news.html" class="text-gray-600 hover:text-primary transition-colors text-sm">News</a>
-          <a href="research.html" class="font-semibold text-primary border-b-2 border-primary pb-0.5 text-sm">Research</a>
-          <a href="publications.html" class="text-gray-600 hover:text-primary transition-colors text-sm">Publications</a>
-          <a href="team.html" class="text-gray-600 hover:text-primary transition-colors text-sm">Team</a>
-          <a href="calendar.html" class="text-gray-600 hover:text-primary transition-colors text-sm">Calendar</a>
-          <a href="internal.html" class="text-gray-600 hover:text-primary transition-colors text-sm"><i class="fas fa-lock mr-1"></i>Internal</a>
-          <a href="index.html#contact" class="text-gray-600 hover:text-primary transition-colors text-sm">Contact</a>
-        </div>
-        <button id="mobile-menu-btn" class="md:hidden p-2 rounded text-gray-600 hover:bg-gray-100 focus:outline-none" aria-label="Menu">
-          <i class="fas fa-bars text-lg"></i>
-        </button>
-      </div>
-      <div id="mobile-menu" class="hidden md:hidden pb-4">
-        <div class="flex flex-col gap-1">
-          <a href="index.html" class="py-2 text-gray-600 hover:text-primary">Home</a>
-          <a href="news.html" class="py-2 text-gray-600 hover:text-primary">News</a>
-          <a href="research.html" class="py-2 font-semibold text-primary">Research</a>
-          <a href="publications.html" class="py-2 text-gray-600 hover:text-primary">Publications</a>
-          <a href="team.html" class="py-2 text-gray-600 hover:text-primary">Team</a>
-          <a href="calendar.html" class="py-2 text-gray-600 hover:text-primary">Calendar</a>
-          <a href="internal.html" class="py-2 text-gray-600 hover:text-primary">Internal</a>
-          <a href="index.html#contact" class="py-2 text-gray-600 hover:text-primary">Contact</a>
-        </div>
-      </div>
-    </nav>
-  </header>
-
-  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-    <h1 class="font-serif text-3xl sm:text-4xl font-bold text-primary mb-4">Research</h1>
-    <p class="text-gray-600 leading-relaxed mb-12">
-      Our lab combines structural biology, biochemistry, and bacterial genetics to understand the molecular mechanisms of multidrug resistance and microbe-phage interactions.
-    </p>
-
-    <div id="research-areas" class="space-y-8">
-      <!-- Populated by JS from data.js -->
-    </div>
-
-    <div class="mt-16 pt-12 border-t border-gray-200">
-      <h2 class="font-serif text-2xl font-bold text-primary mb-6">Affiliations</h2>
-      <ul class="space-y-2 text-gray-600">
-        <li>• MOE Key Laboratory of Cell Activities and Stress Adaptations</li>
-        <li>• State Key Laboratory of Applied Organic Chemistry</li>
-      </ul>
-    </div>
-  </main>
-
-  <footer class="bg-primary text-white py-12 mt-16">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-        <div>
-          <h3 class="font-serif text-lg font-semibold mb-4 flex items-center gap-2"><i class="fas fa-envelope"></i> Contact</h3>
-          <p class="text-gray-200 text-sm"><a href="mailto:heyx@lzu.edu.cn" class="hover:text-white transition-colors">heyx@lzu.edu.cn</a></p>
-          <p class="text-gray-200 text-sm mt-2"><i class="fas fa-phone mr-2"></i>+86-931-8912563</p>
-        </div>
-        <div>
-          <h3 class="font-serif text-lg font-semibold mb-4 flex items-center gap-2"><i class="fas fa-map-marker-alt"></i> Address</h3>
-          <p class="text-gray-200 text-sm leading-relaxed">School of Life Sciences, Lanzhou University<br>222 Tianshui South Road, Lanzhou 730000, Gansu, China</p>
-        </div>
-        <div>
-          <h3 class="font-serif text-lg font-semibold mb-4 flex items-center gap-2"><i class="fas fa-link"></i> Links</h3>
-          <ul class="space-y-2 text-sm">
-            <li><a href="https://www.lzu.edu.cn" target="_blank" rel="noopener noreferrer" class="text-gray-200 hover:text-white transition-colors">Lanzhou University</a></li>
-            <li><a href="https://life.lzu.edu.cn" target="_blank" rel="noopener noreferrer" class="text-gray-200 hover:text-white transition-colors">School of Life Sciences</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="mt-10 pt-8 border-t border-gray-600 text-center text-gray-400 text-sm">© 2026 Lanzhou University, He Lab. All rights reserved.</div>
-    </div>
-  </footer>
-
-  <script src="data.js"></script>
-  <script>
-    const container = document.getElementById('research-areas');
-    RESEARCH_AREAS.forEach(area => {
-      const card = document.createElement('div');
-      card.className = 'paper-card border border-gray-200 rounded-lg p-6 transition-all duration-200';
-      card.innerHTML = `
-        <div class="flex gap-4">
-          <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-            <i class="fas ${area.icon} text-primary text-xl"></i>
-          </div>
-          <div>
-            <h2 class="font-serif text-xl font-semibold text-primary mb-2">${area.title}</h2>
-            <p class="text-gray-600 leading-relaxed">${area.description}</p>
-          </div>
-        </div>
-      `;
-      container.appendChild(card);
-    });
-
-    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-      const menu = document.getElementById('mobile-menu');
-      const icon = this.querySelector('i');
-      menu.classList.toggle('hidden');
-      icon.classList.toggle('fa-bars');
-      icon.classList.toggle('fa-times');
-    });
-    document.querySelectorAll('#mobile-menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        document.getElementById('mobile-menu').classList.add('hidden');
-        const icon = document.querySelector('#mobile-menu-btn i');
-        if (icon) { icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
-      });
-    });
-  </script>
-</body>
-</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research | He Lab - Lanzhou University</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { primary: '#003366', 'primary-light': '#004080' },
+          fontFamily: { serif: ['Cormorant Garamond', 'Georgia', 'serif'], sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    }
+  </script>
+</head>
+<body class="antialiased text-gray-800">
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200">
+    <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <a href="index.html" class="font-serif text-xl font-bold text-primary tracking-tight hover:text-primary-light transition-colors">He Lab</a>
+        <div class="hidden md:flex items-center gap-6">
+          <a href="index.html" class="text-gray-600 hover:text-primary transition-colors text-sm">Home</a>
+          <a href="research.html" class="font-semibold text-primary border-b-2 border-primary pb-0.5 text-sm">Research</a>
+          <a href="publications.html" class="text-gray-600 hover:text-primary transition-colors text-sm">Publications</a>
+          <a href="team.html" class="text-gray-600 hover:text-primary transition-colors text-sm">Team</a>
+          <a href="calendar.html" class="text-gray-600 hover:text-primary transition-colors text-sm">Calendar</a>
+          <a href="internal.html" class="text-gray-600 hover:text-primary transition-colors text-sm"><i class="fas fa-lock mr-1"></i>Internal</a>
+          <a href="index.html#contact" class="text-gray-600 hover:text-primary transition-colors text-sm">Contact</a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded text-gray-600 hover:bg-gray-100 focus:outline-none" aria-label="Menu">
+          <i class="fas fa-bars text-lg"></i>
+        </button>
+      </div>
+      <div id="mobile-menu" class="hidden md:hidden pb-4">
+        <div class="flex flex-col gap-1">
+          <a href="index.html" class="py-2 text-gray-600 hover:text-primary">Home</a>
+          <a href="research.html" class="py-2 font-semibold text-primary">Research</a>
+          <a href="publications.html" class="py-2 text-gray-600 hover:text-primary">Publications</a>
+          <a href="team.html" class="py-2 text-gray-600 hover:text-primary">Team</a>
+          <a href="calendar.html" class="py-2 text-gray-600 hover:text-primary">Calendar</a>
+          <a href="internal.html" class="py-2 text-gray-600 hover:text-primary">Internal</a>
+          <a href="index.html#contact" class="py-2 text-gray-600 hover:text-primary">Contact</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+    <h1 class="font-serif text-3xl sm:text-4xl font-bold text-primary mb-4">Research</h1>
+    <p class="text-gray-600 leading-relaxed mb-12">
+      Our lab combines structural biology, biochemistry, and bacterial genetics to understand the molecular mechanisms of multidrug resistance and microbe-phage interactions.
+    </p>
+
+    <div id="research-areas" class="space-y-8">
+      <!-- Populated by JS from data.js -->
+    </div>
+
+    <div class="mt-16 pt-12 border-t border-gray-200">
+      <h2 class="font-serif text-2xl font-bold text-primary mb-6">Affiliations</h2>
+      <ul class="space-y-2 text-gray-600">
+        <li>• MOE Key Laboratory of Cell Activities and Stress Adaptations</li>
+        <li>• State Key Laboratory of Applied Organic Chemistry</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="bg-primary text-white py-12 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+        <div>
+          <h3 class="font-serif text-lg font-semibold mb-4 flex items-center gap-2"><i class="fas fa-envelope"></i> Contact</h3>
+          <p class="text-gray-200 text-sm"><a href="mailto:heyx@lzu.edu.cn" class="hover:text-white transition-colors">heyx@lzu.edu.cn</a></p>
+          <p class="text-gray-200 text-sm mt-2"><i class="fas fa-phone mr-2"></i>+86-931-8912563</p>
+        </div>
+        <div>
+          <h3 class="font-serif text-lg font-semibold mb-4 flex items-center gap-2"><i class="fas fa-map-marker-alt"></i> Address</h3>
+          <p class="text-gray-200 text-sm leading-relaxed">School of Life Sciences, Lanzhou University<br>222 Tianshui South Road, Lanzhou 730000, Gansu, China</p>
+        </div>
+        <div>
+          <h3 class="font-serif text-lg font-semibold mb-4 flex items-center gap-2"><i class="fas fa-link"></i> Links</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="https://www.lzu.edu.cn" target="_blank" rel="noopener noreferrer" class="text-gray-200 hover:text-white transition-colors">Lanzhou University</a></li>
+            <li><a href="https://life.lzu.edu.cn" target="_blank" rel="noopener noreferrer" class="text-gray-200 hover:text-white transition-colors">School of Life Sciences</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-10 pt-8 border-t border-gray-600 text-center text-gray-400 text-sm">© 2026 Lanzhou University, He Lab. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script>
+    const container = document.getElementById('research-areas');
+    RESEARCH_AREAS.forEach(area => {
+      const card = document.createElement('div');
+      card.className = 'paper-card border border-gray-200 rounded-lg p-6 transition-all duration-200';
+      card.innerHTML = `
+        <div class="flex gap-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+            <i class="fas ${area.icon} text-primary text-xl"></i>
+          </div>
+          <div>
+            <h2 class="font-serif text-xl font-semibold text-primary mb-2">${area.title}</h2>
+            <p class="text-gray-600 leading-relaxed">${area.description}</p>
+          </div>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+
+    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+      const menu = document.getElementById('mobile-menu');
+      const icon = this.querySelector('i');
+      menu.classList.toggle('hidden');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    });
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.add('hidden');
+        const icon = document.querySelector('#mobile-menu-btn i');
+        if (icon) { icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,3366 +1,382 @@
-<!DOCTYPE html>
-
-
-
-
-
-
-
-<html lang="en">
-
-
-
-
-
-
-
-<head>
-
-
-
-
-
-
-
-  <meta charset="UTF-8">
-
-
-
-
-
-
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-
-
-
-
-
-  <title>He Lab | Lanzhou University - Structural Biology & Microbiology</title>
-
-
-
-
-
-
-
-  <script src="https://cdn.tailwindcss.com"></script>
-
-
-
-
-
-
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-
-
-
-
-
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-
-
-
-
-
-
-
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-
-
-
-
-
-
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-
-
-
-
-
-
-  <link rel="stylesheet" href="styles.css">
-
-
-
-
-
-
-
-  <script>
-
-
-
-
-
-
-
-    tailwind.config = {
-
-
-
-
-
-
-
-      theme: {
-
-
-
-
-
-
-
-        extend: {
-
-
-
-
-
-
-
-          colors: {
-
-
-
-
-
-
-
-            primary: '#003B70',
-
-
-
-
-
-
-
-            'primary-light': '#004a8f',
-
-
-
-
-
-
-
-          },
-
-
-
-
-
-
-
-          fontFamily: {
-
-
-
-
-
-
-
-            serif: ['Merriweather', 'Georgia', 'serif'],
-
-
-
-
-
-
-
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-
-
-
-
-
-
-
-          },
-
-
-
-
-
-
-
-        },
-
-
-
-
-
-
-
-      },
-
-
-
-
-
-
-
-    }
-
-
-
-
-
-
-
-  </script>
-
-
-
-
-
-
-
-</head>
-
-
-
-
-
-
-
-<body class="antialiased text-gray-800">
-
-
-
-
-
-
-
-  <!-- Header -->
-
-
-
-
-
-
-
-  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200">
-
-
-
-
-
-
-
-    <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-
-
-
-
-
-
-
-      <div class="flex justify-between items-center h-14">
-
-
-
-
-
-
-
-        <a href="index.html" class="font-serif text-xl font-bold text-primary tracking-tight hover:text-primary-light transition-colors">
-
-
-
-
-
-
-
-          He Lab
-
-
-
-
-
-
-
-        </a>
-
-
-
-
-
-
-
-        <div class="hidden md:flex items-center gap-6">
-
-
-
-
-
-
-
-          <a href="#home" class="text-gray-600 hover:text-primary transition-colors text-sm">Home</a>
-
-
-
-
-
-
-
-          <a href="news.html" class="text-gray-600 hover:text-primary transition-colors text-sm">News</a>
-
-
-
-
-
-
-
-          <a href="research.html" class="text-gray-600 hover:text-primary transition-colors text-sm">Research</a>
-
-
-
-
-
-
-
-          <a href="publications.html" class="text-gray-600 hover:text-primary transition-colors text-sm">Publications</a>
-
-
-
-
-
-
-
-          <a href="team.html" class="text-gray-600 hover:text-primary transition-colors text-sm">Team</a>
-
-
-
-
-
-
-
-          <a href="calendar.html" class="text-gray-600 hover:text-primary transition-colors text-sm">Calendar</a>
-
-
-
-
-
-
-
-          <a href="internal.html" class="text-gray-600 hover:text-primary transition-colors text-sm"><i class="fas fa-lock mr-1"></i>Internal</a>
-
-
-
-
-
-
-
-          <a href="#contact" class="text-gray-600 hover:text-primary transition-colors text-sm">Contact</a>
-
-
-
-
-
-
-
-        </div>
-
-
-
-
-
-
-
-        <button id="mobile-menu-btn" class="md:hidden p-2 rounded text-gray-600 hover:bg-gray-100 focus:outline-none" aria-label="Menu">
-
-
-
-
-
-
-
-          <i class="fas fa-bars text-lg"></i>
-
-
-
-
-
-
-
-        </button>
-
-
-
-
-
-
-
-      </div>
-
-
-
-
-
-
-
-      <div id="mobile-menu" class="hidden md:hidden pb-4">
-
-
-
-
-
-
-
-        <div class="flex flex-col gap-1">
-
-
-
-
-
-
-
-          <a href="#home" class="py-2 text-gray-600 hover:text-primary">Home</a>
-
-
-
-
-
-
-
-          <a href="news.html" class="py-2 text-gray-600 hover:text-primary">News</a>
-
-
-
-
-
-
-
-          <a href="research.html" class="py-2 text-gray-600 hover:text-primary">Research</a>
-
-
-
-
-
-
-
-          <a href="publications.html" class="py-2 text-gray-600 hover:text-primary">Publications</a>
-
-
-
-
-
-
-
-          <a href="team.html" class="py-2 text-gray-600 hover:text-primary">Team</a>
-
-
-
-
-
-
-
-          <a href="calendar.html" class="py-2 text-gray-600 hover:text-primary">Calendar</a>
-
-
-
-
-
-
-
-          <a href="internal.html" class="py-2 text-gray-600 hover:text-primary">Internal</a>
-
-
-
-
-
-
-
-          <a href="#contact" class="py-2 text-gray-600 hover:text-primary">Contact</a>
-
-
-
-
-
-
-
-        </div>
-
-
-
-
-
-
-
-      </div>
-
-
-
-
-
-
-
-    </nav>
-
-
-
-
-
-
-
-  </header>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- Hero Section -->
-
-
-
-
-
-
-
-  <section id="home" class="relative min-h-[70vh] flex items-center justify-center">
-
-
-
-
-
-
-
-    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=1920');"></div>
-
-
-
-
-
-
-
-    <div class="hero-overlay absolute inset-0"></div>
-
-
-
-
-
-
-
-    <div class="relative z-10 text-center px-4">
-
-
-
-
-
-
-
-      <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 tracking-tight">
-
-
-
-
-
-
-
-        He Lab
-
-
-
-
-
-
-
-      </h1>
-
-
-
-
-
-
-
-      <p class="text-xl sm:text-2xl text-white/90 font-light leading-relaxed max-w-2xl mx-auto">
-
-
-
-
-
-
-
-        School of Life Sciences · Lanzhou University
-
-
-
-
-
-
-
-      </p>
-
-
-
-
-
-
-
-      <p class="text-white/80 mt-2 text-sm sm:text-base leading-relaxed">
-
-
-
-
-
-
-
-        Structural Biology · Multidrug Resistance · Microbe-Phage Interactions
-
-
-
-
-
-
-
-      </p>
-
-
-
-
-
-
-
-    </div>
-
-
-
-
-
-
-
-  </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- About Us -->
-
-
-
-
-
-
-
-  <section id="about" class="py-16 sm:py-24 bg-white">
-
-
-
-
-
-
-
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-
-
-
-
-
-
-
-      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mb-8 pb-3 border-b-4 border-primary w-fit">About Us</h2>
-
-
-
-
-
-
-
-      <div class="space-y-6 text-gray-700 leading-relaxed text-base">
-
-
-
-
-
-
-
-        <p>
-
-
-
-
-
-
-
-          The He Lab at Lanzhou University focuses on understanding the molecular mechanisms of multidrug resistance and microbe-phage interactions. We combine structural biology, biochemistry, and bacterial genetics to address fundamental questions in microbiology.
-
-
-
-
-
-
-
-        </p>
-
-
-
-
-
-
-
-        <p>
-
-
-
-
-
-
-
-          Our research spans bacterial genetics, the biosynthesis of secondary metabolites, and the structural basis of antibiotic resistance. We are affiliated with the MOE Key Laboratory of Cell Activities and Stress Adaptations and the State Key Laboratory of Applied Organic Chemistry.
-
-
-
-
-
-
-
-        </p>
-
-
-
-
-
-
-
-      </div>
-
-
-
-
-
-
-
-    </div>
-
-
-
-
-
-
-
-  </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- PI Introduction -->
-
-
-
-
-
-
-
-  <section id="pi" class="py-16 sm:py-24 bg-gray-50">
-
-
-
-
-
-
-
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-
-
-
-
-
-
-
-      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mb-10 pb-3 border-b-4 border-primary w-fit">Principal Investigator</h2>
-
-
-
-
-
-
-
-      <div class="overflow-hidden">
-
-
-
-
-
-
-
-        <img src="assets/pi.jpg" alt="Prof. Yongxing He" class="rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 w-44 sm:w-52 float-none sm:float-left mx-auto sm:mx-0 block sm:mr-8 mb-6">
-
-
-
-
-
-
-
-        <div class="space-y-6 text-gray-700 leading-relaxed text-base">
-
-
-
-
-
-
-
-          <p>
-
-
-
-
-
-
-
-            Dr. Yongxing He is a Professor in the School of Life Sciences at Lanzhou University. He earned his B.S. (2005) and Ph.D. (2010) from the University of Science and Technology of China (USTC). From 2011 to 2013, he completed his postdoctoral training at the University of California, Berkeley, under the supervision of Prof. John Kuriyan.
-
-
-
-
-
-
-
-          </p>
-
-
-
-
-
-
-
-          <p>
-
-
-
-
-
-
-
-            He joined the faculty of Lanzhou University as an Associate Professor in 2013 and was promoted to full Professor in 2020. He is also affiliated with the MOE Key Laboratory of Cell Activities and Stress Adaptations and the State Key Laboratory of Applied Organic Chemistry.
-
-
-
-
-
-
-
-          </p>
-
-
-
-
-
-
-
-          <p>
-
-
-
-
-
-
-
-            Dr. He's research focuses on bacterial genetics, biochemistry, multidrug resistance, the biosynthesis of secondary metabolites, and structural biology. His lab utilizes structural biology and biochemical techniques to understand the molecular mechanisms of multidrug resistance and microbe-phage interactions.
-
-
-
-
-
-
-
-          </p>
-
-
-
-
-
-
-
-          <p>
-
-
-
-
-
-
-
-            His scientific achievements have been recognized by several honors, including the Gansu Medical Science and Technology Award (First Prize) and the Gansu Provincial Science and Technology Progress Award in 2019.
-
-
-
-
-
-
-
-          </p>
-
-
-
-
-
-
-
-        </div>
-
-
-
-
-
-
-
-      </div>
-
-
-
-
-
-
-
-    </div>
-
-
-
-
-
-
-
-  </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- Latest News -->
-
-  <section id="latest-news" class="max-w-4xl mx-auto py-12 px-4 border-b border-gray-200">
-
-    <h2 class="text-2xl font-bold text-gray-800 mb-6 font-serif">Latest News</h2>
-
-
-
-    <!-- 首屏占位：JS 会在加载后替换内容 -->
-
-    <div id="latest-news-container" class="space-y-6">
-
-      <p class="text-gray-500">Loading news...</p>
-
-    </div>
-
-
-
-    <a href="news.html" class="block text-right text-blue-700 font-semibold mt-6 hover:underline">View All News ➔</a>
-
-  </section>
-
-
-
-  <!-- Featured Publications -->
-
-
-
-
-
-
-
-  <section id="publications" class="py-16 sm:py-24 bg-white">
-
-
-
-
-
-
-
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-
-
-
-
-
-
-
-      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mb-10 pb-3 border-b-4 border-primary w-fit">Featured Publications</h2>
-
-
-
-
-
-
-
-      <div id="papers-container" class="space-y-6">
-
-
-
-
-
-
-
-        <!-- Populated by JS from data.js -->
-
-
-
-
-
-
-
-      </div>
-
-
-
-
-
-
-
-      <div class="mt-8 text-center">
-
-
-
-
-
-
-
-        <a href="publications.html" class="inline-flex items-center gap-2 px-6 py-3 rounded border-2 border-primary text-primary font-medium hover:bg-primary hover:text-white transition-colors">
-
-
-
-
-
-
-
-          <i class="fas fa-list"></i> View All Publications
-
-
-
-
-
-
-
-        </a>
-
-
-
-
-
-
-
-      </div>
-
-
-
-
-
-
-
-    </div>
-
-
-
-
-
-
-
-  </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- Team Members -->
-
-
-
-
-
-
-
-  <section id="team" class="py-16 sm:py-24 bg-gray-50">
-
-
-
-
-
-
-
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-
-
-
-
-
-
-
-      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mb-10 pb-3 border-b-4 border-primary w-fit">Team</h2>
-
-
-
-
-
-
-
-      <div id="team-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-
-
-
-
-
-
-
-        <p class="text-gray-500 col-span-full">Loading...</p>
-
-
-
-
-
-
-
-      </div>
-
-
-
-
-
-
-
-      <div class="mt-8 text-center">
-
-
-
-
-
-
-
-        <a href="team.html" class="inline-flex items-center gap-2 text-primary font-medium hover:underline">
-
-
-
-
-
-
-
-          <i class="fas fa-users"></i> View Full Team
-
-
-
-
-
-
-
-        </a>
-
-
-
-
-
-
-
-      </div>
-
-
-
-
-
-
-
-    </div>
-
-
-
-
-
-
-
-  </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- Footer -->
-
-
-
-
-
-
-
-  <footer id="contact" class="bg-primary text-white py-12">
-
-
-
-
-
-
-
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-
-
-
-
-
-
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-
-
-
-
-
-
-
-        <div>
-
-
-
-
-
-
-
-          <h3 class="font-serif text-lg font-semibold mb-4 flex items-center gap-2">
-
-
-
-
-
-
-
-            <i class="fas fa-envelope"></i> Contact
-
-
-
-
-
-
-
-          </h3>
-
-
-
-
-
-
-
-          <p class="text-gray-200 text-sm">
-
-
-
-
-
-
-
-            <a href="mailto:heyx@lzu.edu.cn" class="hover:text-white transition-colors">heyx@lzu.edu.cn</a>
-
-
-
-
-
-
-
-          </p>
-
-
-
-
-
-
-
-          <p class="text-gray-200 text-sm mt-2"><i class="fas fa-phone mr-2"></i>+86-931-8912563</p>
-
-
-
-
-
-
-
-        </div>
-
-
-
-
-
-
-
-        <div>
-
-
-
-
-
-
-
-          <h3 class="font-serif text-lg font-semibold mb-4 flex items-center gap-2">
-
-
-
-
-
-
-
-            <i class="fas fa-map-marker-alt"></i> Address
-
-
-
-
-
-
-
-          </h3>
-
-
-
-
-
-
-
-          <p class="text-gray-200 text-sm leading-relaxed">
-
-
-
-
-
-
-
-            School of Life Sciences, Lanzhou University<br>
-
-
-
-
-
-
-
-            222 Tianshui South Road, Lanzhou 730000, Gansu, China<br>
-
-
-
-
-
-
-
-            <span class="text-gray-300">(Office: Tianyan Building 217)</span>
-
-
-
-
-
-
-
-          </p>
-
-
-
-
-
-
-
-        </div>
-
-
-
-
-
-
-
-        <div>
-
-
-
-
-
-
-
-          <h3 class="font-serif text-lg font-semibold mb-4 flex items-center gap-2">
-
-
-
-
-
-
-
-            <i class="fas fa-link"></i> Links
-
-
-
-
-
-
-
-          </h3>
-
-
-
-
-
-
-
-          <ul class="space-y-2 text-sm">
-
-
-
-
-
-
-
-            <li><a href="https://www.lzu.edu.cn" target="_blank" rel="noopener noreferrer" class="text-gray-200 hover:text-white transition-colors">Lanzhou University</a></li>
-
-
-
-
-
-
-
-            <li><a href="https://life.lzu.edu.cn" target="_blank" rel="noopener noreferrer" class="text-gray-200 hover:text-white transition-colors">School of Life Sciences</a></li>
-
-
-
-
-
-
-
-          </ul>
-
-
-
-
-
-
-
-        </div>
-
-
-
-
-
-
-
-      </div>
-
-
-
-
-
-
-
-      <div class="mt-10 pt-8 border-t border-gray-600 text-center text-gray-400 text-sm">
-
-
-
-
-
-
-
-        © 2026 Lanzhou University, He Lab. All rights reserved.
-
-
-
-
-
-
-
-      </div>
-
-
-
-
-
-
-
-    </div>
-
-
-
-
-
-
-
-  </footer>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- Scripts: data.js must load first -->
-
-
-
-
-
-
-
-  <script src="data.js?v=2"></script>
-
-
-
-
-
-
-
-  <script>
-
-
-
-
-
-
-
-    // Mobile menu toggle
-
-
-
-
-
-
-
-    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-
-
-
-
-
-
-
-      const menu = document.getElementById('mobile-menu');
-
-
-
-
-
-
-
-      const icon = this.querySelector('i');
-
-
-
-
-
-
-
-      menu.classList.toggle('hidden');
-
-
-
-
-
-
-
-      icon.classList.toggle('fa-bars');
-
-
-
-
-
-
-
-      icon.classList.toggle('fa-times');
-
-
-
-
-
-
-
-    });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // Close mobile menu when clicking a link
-
-
-
-
-
-
-
-    document.querySelectorAll('#mobile-menu a').forEach(link => {
-
-
-
-
-
-
-
-      link.addEventListener('click', () => {
-
-
-
-
-
-
-
-        document.getElementById('mobile-menu').classList.add('hidden');
-
-
-
-
-
-
-
-        document.querySelector('#mobile-menu-btn i').classList.remove('fa-times');
-
-
-
-
-
-
-
-        document.querySelector('#mobile-menu-btn i').classList.add('fa-bars');
-
-
-
-
-
-
-
-      });
-
-
-
-
-
-
-
-    });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // =========================
-
-    // News: 首页仅展示最新 3 条
-
-    // 数据源：Google Sheets 公开 CSV
-
-    // 表头要求：Date, Category, Title, Content, Link
-
-    // =========================
-
-    const NEWS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTeQVmuujpMeFRPT04Nm7-79FhlIz7h5YQcxcbGdB4L_Fm8nmxWt1BglB5cU8OtG0fyl57AWAXUofxh/pub?output=csv';
-
-
-
-    /**
-
-     * 稳健的 CSV 解析：
-
-     * - 处理字段内逗号（用双引号包裹）
-
-     * - 处理双引号转义（"" -> ")
-
-     * 注意：这里按“行”解析，假设单元格内部不包含换行。
-
-     */
-
-    function parseNewsCSV(csvText) {
-
-      const text = (csvText || '').replace(/^\uFEFF/, '');
-
-      const lines = text.trim().split(/\r?\n/);
-
-      if (lines.length < 2) return [];
-
-
-
-      function parseRow(line) {
-
-        const result = [];
-
-        let current = '';
-
-        let inQuotes = false;
-
-        for (let i = 0; i < line.length; i++) {
-
-          const char = line[i];
-
-          if (char === '"') {
-
-            if (inQuotes && line[i + 1] === '"') { current += '"'; i++; }
-
-            else { inQuotes = !inQuotes; }
-
-          } else if (char === ',' && !inQuotes) {
-
-            result.push(current);
-
-            current = '';
-
-          } else {
-
-            current += char;
-
-          }
-
-        }
-
-        result.push(current);
-
-        return result.map(v => v.trim());
-
-      }
-
-
-
-      const headers = parseRow(lines[0]).map(h => h.trim());
-
-      const rows = [];
-
-      for (let i = 1; i < lines.length; i++) {
-
-        const values = parseRow(lines[i]);
-
-        const row = {};
-
-        headers.forEach((h, idx) => { row[h] = values[idx] !== undefined ? values[idx].trim() : ''; });
-
-        rows.push(row);
-
-      }
-
-      return rows;
-
-    }
-
-
-
-    function escapeHtml(str) {
-
-      if (!str) return '';
-
-      const div = document.createElement('div');
-
-      div.textContent = String(str);
-
-      return div.innerHTML;
-
-    }
-
-
-
-    // 尝试把 Date 转为可比较的时间戳；失败则返回 0
-
-    function toDateValue(dateStr) {
-
-      const s = (dateStr || '').trim();
-
-      if (!s) return 0;
-
-      const normalized = s.replace(/\./g, '-').replace(/\//g, '-');
-
-      const t = Date.parse(normalized);
-
-      return Number.isFinite(t) ? t : 0;
-
-    }
-
-
-
-    async function loadLatestNews() {
-
-      const container = document.getElementById('latest-news-container');
-
-      if (!container) return;
-
-
-
-      try {
-
-        const response = await fetch(NEWS_CSV_URL, { cache: 'no-store' });
-
-        if (!response.ok) throw new Error('HTTP ' + response.status);
-
-        const csvText = await response.text();
-
-        const rows = parseNewsCSV(csvText);
-
-
-
-        const first = rows[0] || {};
-
-        const requiredHeaders = ['Date', 'Category', 'Title', 'Content', 'Link'];
-
-        const missing = requiredHeaders.filter(h => !(h in first));
-
-        if (missing.length) throw new Error('CSV 表头缺失：' + missing.join(', '));
-
-
-
-        const sorted = [...rows].sort((a, b) => toDateValue(b.Date) - toDateValue(a.Date));
-
-        const latest3 = sorted.slice(0, 3);
-
-
-
-        if (latest3.length === 0) {
-
-          container.innerHTML = '<p class="text-gray-500">No news yet.</p>';
-
-          return;
-
-        }
-
-
-
-        container.innerHTML = '';
-
-
-
-        latest3.forEach((item) => {
-
-          const date = escapeHtml(item.Date || '');
-
-          const category = escapeHtml(item.Category || '');
-
-          const title = escapeHtml(item.Title || '');
-
-          const content = escapeHtml(item.Content || '');
-
-          const link = (item.Link || '').trim();
-
-          const hasLink = !!link;
-
-
-
-          const rowEl = document.createElement('div');
-
-          rowEl.className = 'flex gap-6 items-start';
-
-
-
-          const left = document.createElement('div');
-
-          left.className = 'text-blue-900 font-bold w-32 flex-shrink-0';
-
-          left.textContent = date;
-
-
-
-          const right = document.createElement('div');
-
-          right.className = 'flex-1 min-w-0';
-
-
-
-          const catHtml = category
-
-            ? `<span class="bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded-full inline-block mb-2">${category}</span>`
-
-            : '';
-
-
-
-          const moreHtml = hasLink
-
-            ? ` <a href="${link.replace(/"/g, '&quot;')}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm ml-2">Read more ➔</a>`
-
-            : '';
-
-
-
-          right.innerHTML = `
-
-            ${catHtml}
-
-            <div class="font-semibold text-gray-900 text-lg">${title}</div>
-
-            <div class="text-gray-600 mt-1">${content}${moreHtml}</div>
-
-          `;
-
-
-
-          rowEl.appendChild(left);
-
-          rowEl.appendChild(right);
-
-          container.appendChild(rowEl);
-
-        });
-
-
-
-      } catch (err) {
-
-        console.error('Latest news load error:', err);
-
-        container.innerHTML = '<p class="text-red-600">加载新闻失败，请检查网络或稍后重试。</p>';
-
-      }
-
-    }
-
-
-
-    loadLatestNews();
-
-
-
-    // 从 Google Sheet 加载 Featured Publications（Featured 列 = yes 的论文）
-
-
-
-
-
-
-
-    async function loadFeaturedPublications() {
-
-
-
-
-
-
-
-      const papersContainer = document.getElementById('papers-container');
-
-
-
-
-
-
-
-      const csvUrl = (typeof PUBLICATIONS_CSV_URL !== 'undefined' && PUBLICATIONS_CSV_URL)
-
-
-
-
-
-
-
-        ? PUBLICATIONS_CSV_URL
-
-
-
-
-
-
-
-        : 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQlys1Ph7q5EOqbj6iBMuw_oA0qIl9I81PZl-QftpJW8RcwFjnBouIEAGib_xQlrN9rAIviPoLqJ7Fh/pub?output=csv';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      function parseCSV(csvText) {
-
-
-
-
-
-
-
-        const lines = csvText.trim().split(/\r?\n/);
-
-
-
-
-
-
-
-        if (lines.length < 2) return [];
-
-
-
-
-
-
-
-        function parseRow(line) {
-
-
-
-
-
-
-
-          const result = [];
-
-
-
-
-
-
-
-          let current = '';
-
-
-
-
-
-
-
-          let inQuotes = false;
-
-
-
-
-
-
-
-          for (let i = 0; i < line.length; i++) {
-
-
-
-
-
-
-
-            const char = line[i];
-
-
-
-
-
-
-
-            if (char === '"') {
-
-
-
-
-
-
-
-              if (inQuotes && line[i + 1] === '"') { current += '"'; i++; }
-
-
-
-
-
-
-
-              else { inQuotes = !inQuotes; }
-
-
-
-
-
-
-
-            } else if (char === ',' && !inQuotes) {
-
-
-
-
-
-
-
-              result.push(current.trim());
-
-
-
-
-
-
-
-              current = '';
-
-
-
-
-
-
-
-            } else { current += char; }
-
-
-
-
-
-
-
-          }
-
-
-
-
-
-
-
-          result.push(current.trim());
-
-
-
-
-
-
-
-          return result;
-
-
-
-
-
-
-
-        }
-
-
-
-
-
-
-
-        const headers = parseRow(lines[0]).map(h => h.trim());
-
-
-
-
-
-
-
-        const rows = [];
-
-
-
-
-
-
-
-        for (let i = 1; i < lines.length; i++) {
-
-
-
-
-
-
-
-          const values = parseRow(lines[i]);
-
-
-
-
-
-
-
-          const row = {};
-
-
-
-
-
-
-
-          headers.forEach((h, idx) => { row[h] = values[idx] !== undefined ? values[idx].trim() : ''; });
-
-
-
-
-
-
-
-          rows.push(row);
-
-
-
-
-
-
-
-        }
-
-
-
-
-
-
-
-        return rows;
-
-
-
-
-
-
-
-      }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      try {
-
-
-
-
-
-
-
-        const response = await fetch(csvUrl);
-
-
-
-
-
-
-
-        if (!response.ok) throw new Error('HTTP ' + response.status);
-
-
-
-
-
-
-
-        let csvText = await response.text();
-
-
-
-
-
-
-
-        csvText = csvText.replace(/^\uFEFF/, '');
-
-
-
-
-
-
-
-        const rows = parseCSV(csvText);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        const featured = rows.filter(r => (r.Featured || '').toLowerCase() === 'yes');
-
-
-
-
-
-
-
-        const sorted = featured.sort((a, b) => (parseInt(b.Year) || 0) - (parseInt(a.Year) || 0));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        papersContainer.innerHTML = '';
-
-
-
-
-
-
-
-        sorted.forEach((paper) => {
-
-
-
-
-
-
-
-          const title = (paper.Title || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-
-
-
-
-
-
-          const authors = (paper.Authors || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-
-
-
-
-
-
-          const journal = (paper.Journal || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-
-
-
-
-
-
-          const year = (paper.Year || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-
-
-
-
-
-
-          const link = (paper.Link || '').trim();
-
-
-
-
-
-
-
-          const hasPdf = link && (link.startsWith('http://') || link.startsWith('https://'));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          const titleHtml = hasPdf
-
-
-
-
-
-
-
-            ? `<a href="${link.replace(/"/g, '&quot;')}" target="_blank" rel="noopener noreferrer" class="font-medium text-gray-900 hover:text-blue-600 hover:underline">${title}</a>`
-
-
-
-
-
-
-
-            : `<span class="font-medium text-gray-900">${title}</span>`;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          const card = document.createElement('div');
-
-
-
-
-
-
-
-          card.className = 'paper-card border border-gray-200 rounded-lg p-5 transition-all duration-200';
-
-
-
-
-
-
-
-          card.innerHTML = `
-
-
-
-
-
-
-
-            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-
-
-
-
-
-
-
-              <div class="flex-1">
-
-
-
-
-
-
-
-                <h3 class="mb-1">${titleHtml}</h3>
-
-
-
-
-
-
-
-                <p class="text-gray-600 text-sm mb-1">${authors}</p>
-
-
-
-
-
-
-
-                <p class="text-gray-500 text-sm">${journal} (${year})</p>
-
-
-
-
-
-
-
-              </div>
-
-
-
-
-
-
-
-              ${hasPdf 
-
-
-
-
-
-
-
-                ? `<a href="${link.replace(/"/g, '&quot;')}" target="_blank" rel="noopener noreferrer" class="pdf-btn inline-flex items-center gap-2 px-4 py-2 rounded text-white text-sm font-medium flex-shrink-0">
-
-
-
-
-
-
-
-                    <i class="fas fa-file-pdf"></i> PDF
-
-
-
-
-
-
-
-                   </a>`
-
-
-
-
-
-
-
-                : `<span class="pdf-btn-placeholder inline-flex items-center gap-2 px-4 py-2 rounded text-sm font-medium flex-shrink-0">
-
-
-
-
-
-
-
-                    <i class="fas fa-file-pdf"></i> PDF (Coming Soon)
-
-
-
-
-
-
-
-                   </span>`
-
-
-
-
-
-
-
-              }
-
-
-
-
-
-
-
-            </div>
-
-
-
-
-
-
-
-          `;
-
-
-
-
-
-
-
-          papersContainer.appendChild(card);
-
-
-
-
-
-
-
-        });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        if (sorted.length === 0) {
-
-
-
-
-
-
-
-          papersContainer.innerHTML = '<p class="text-gray-500">暂无精选论文。请在 Google Sheet 的 Featured 列中填写 yes 来标记精选论文。</p>';
-
-
-
-
-
-
-
-        }
-
-
-
-
-
-
-
-      } catch (err) {
-
-
-
-
-
-
-
-        console.error('Featured publications load error:', err);
-
-
-
-
-
-
-
-        papersContainer.innerHTML = '<p class="text-red-600">加载精选论文失败，请检查网络或稍后重试。</p>';
-
-
-
-
-
-
-
-      }
-
-
-
-
-
-
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    loadFeaturedPublications();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // 从 Google Sheet 加载团队成员（仅 Current 成员展示在首页）
-
-
-
-
-
-
-
-    async function loadTeam() {
-
-
-
-
-
-
-
-      const teamContainer = document.getElementById('team-container');
-
-
-
-
-
-
-
-      const csvUrl = typeof TEAM_CSV_URL !== 'undefined' ? TEAM_CSV_URL : '';
-
-
-
-
-
-
-
-      if (!csvUrl) {
-
-
-
-
-
-
-
-        teamContainer.innerHTML = '<p class="text-gray-500">请在 data.js 中配置 TEAM_CSV_URL</p>';
-
-
-
-
-
-
-
-        return;
-
-
-
-
-
-
-
-      }
-
-
-
-
-
-
-
-      function parseCSVTeam(csvText) {
-
-
-
-
-
-
-
-        const lines = csvText.trim().split(/\r?\n/);
-
-
-
-
-
-
-
-        if (lines.length < 2) return [];
-
-
-
-
-
-
-
-        function parseRow(line) {
-
-
-
-
-
-
-
-          const result = [];
-
-
-
-
-
-
-
-          let current = '';
-
-
-
-
-
-
-
-          let inQuotes = false;
-
-
-
-
-
-
-
-          for (let i = 0; i < line.length; i++) {
-
-
-
-
-
-
-
-            const char = line[i];
-
-
-
-
-
-
-
-            if (char === '"') {
-
-
-
-
-
-
-
-              if (inQuotes && line[i + 1] === '"') { current += '"'; i++; }
-
-
-
-
-
-
-
-              else { inQuotes = !inQuotes; }
-
-
-
-
-
-
-
-            } else if (char === ',' && !inQuotes) {
-
-
-
-
-
-
-
-              result.push(current.trim());
-
-
-
-
-
-
-
-              current = '';
-
-
-
-
-
-
-
-            } else { current += char; }
-
-
-
-
-
-
-
-          }
-
-
-
-
-
-
-
-          result.push(current.trim());
-
-
-
-
-
-
-
-          return result;
-
-
-
-
-
-
-
-        }
-
-
-
-
-
-
-
-        const headers = parseRow(lines[0]).map(h => h.trim());
-
-
-
-
-
-
-
-        const rows = [];
-
-
-
-
-
-
-
-        for (let i = 1; i < lines.length; i++) {
-
-
-
-
-
-
-
-          const values = parseRow(lines[i]);
-
-
-
-
-
-
-
-          const row = {};
-
-
-
-
-
-
-
-          headers.forEach((h, idx) => { row[h] = values[idx] !== undefined ? values[idx].trim() : ''; });
-
-
-
-
-
-
-
-          rows.push(row);
-
-
-
-
-
-
-
-        }
-
-
-
-
-
-
-
-        return rows;
-
-
-
-
-
-
-
-      }
-
-
-
-
-
-
-
-      try {
-
-
-
-
-
-
-
-        const response = await fetch(csvUrl);
-
-
-
-
-
-
-
-        if (!response.ok) throw new Error('HTTP ' + response.status);
-
-
-
-
-
-
-
-        let csvText = await response.text();
-
-
-
-
-
-
-
-        csvText = csvText.replace(/^\uFEFF/, '');
-
-
-
-
-
-
-
-        const rows = parseCSVTeam(csvText);
-
-
-
-
-
-
-
-        const current = rows.filter(r => (r.Status || '').toLowerCase() === 'current');
-
-
-
-
-
-
-
-        teamContainer.innerHTML = '';
-
-
-
-
-
-
-
-        current.forEach((m) => {
-
-
-
-
-
-
-
-          const name = (m.Name || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-
-
-
-
-
-
-          const role = (m.Role || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-
-
-
-
-
-
-          const program = (m.Program || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-
-
-
-
-
-
-          const roleProgram = [role, program].filter(Boolean).join(' · ');
-
-
-
-
-
-
-
-          const photo = (m.Photo || '').trim();
-
-
-
-
-
-
-
-          const photoUrl = (photo && (photo.startsWith('http://') || photo.startsWith('https://')))
-
-
-
-
-
-
-
-            ? photo
-
-
-
-
-
-
-
-            : 'https://via.placeholder.com/200x240?text=' + encodeURIComponent((m.Name || '?').charAt(0));
-
-
-
-
-
-
-
-          const card = document.createElement('div');
-
-
-
-
-
-
-
-          card.className = 'team-card border border-gray-200 rounded-lg overflow-hidden bg-white transition-all duration-200';
-
-
-
-
-
-
-
-          card.innerHTML = `
-
-
-
-
-
-
-
-            <div class="team-photo aspect-[5/6] bg-gray-100">
-
-
-
-
-
-
-
-              <img src="${photoUrl}" alt="${name}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/200x240?text='+encodeURIComponent((this.alt||'?').charAt(0))">
-
-
-
-
-
-
-
-            </div>
-
-
-
-
-
-
-
-            <div class="p-4">
-
-
-
-
-
-
-
-              <h3 class="font-semibold text-gray-900">${name}</h3>
-
-
-
-
-
-
-
-              <p class="text-gray-600 text-sm mt-1">${roleProgram}</p>
-
-
-
-
-
-
-
-            </div>
-
-
-
-
-
-
-
-          `;
-
-
-
-
-
-
-
-          teamContainer.appendChild(card);
-
-
-
-
-
-
-
-        });
-
-
-
-
-
-
-
-        if (current.length === 0) teamContainer.innerHTML = '<p class="text-gray-500">暂无团队成员数据。</p>';
-
-
-
-
-
-
-
-      } catch (err) {
-
-
-
-
-
-
-
-        console.error('Team load error:', err);
-
-
-
-
-
-
-
-        teamContainer.innerHTML = '<p class="text-red-600">加载团队成员失败，请检查网络或稍后重试。</p>';
-
-
-
-
-
-
-
-      }
-
-
-
-
-
-
-
-    }
-
-
-
-
-
-
-
-    loadTeam();
-
-
-
-
-
-
-
-  </script>
-
-
-
-
-
-
-
-</body>
-
-
-
-
-
-
-
-</html>
-
-
-
-
-
-
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>He Lab | Lanzhou University - Structural Biology & Microbiology</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#003B70',
+            'primary-light': '#004a8f',
+          },
+          fontFamily: {
+            serif: ['Merriweather', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+</head>
+<body class="antialiased text-gray-800">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200">
+    <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <a href="index.html" class="font-serif text-xl font-bold text-primary tracking-tight hover:text-primary-light transition-colors">
+          He Lab
+        </a>
+        <div class="hidden md:flex items-center gap-6">
+          <a href="#home" class="text-gray-600 hover:text-primary transition-colors text-sm">Home</a>
+          <a href="research.html" class="text-gray-600 hover:text-primary transition-colors text-sm">Research</a>
+          <a href="publications.html" class="text-gray-600 hover:text-primary transition-colors text-sm">Publications</a>
+          <a href="team.html" class="text-gray-600 hover:text-primary transition-colors text-sm">Team</a>
+          <a href="calendar.html" class="text-gray-600 hover:text-primary transition-colors text-sm">Calendar</a>
+          <a href="internal.html" class="text-gray-600 hover:text-primary transition-colors text-sm"><i class="fas fa-lock mr-1"></i>Internal</a>
+          <a href="#contact" class="text-gray-600 hover:text-primary transition-colors text-sm">Contact</a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded text-gray-600 hover:bg-gray-100 focus:outline-none" aria-label="Menu">
+          <i class="fas fa-bars text-lg"></i>
+        </button>
+      </div>
+      <div id="mobile-menu" class="hidden md:hidden pb-4">
+        <div class="flex flex-col gap-1">
+          <a href="#home" class="py-2 text-gray-600 hover:text-primary">Home</a>
+          <a href="research.html" class="py-2 text-gray-600 hover:text-primary">Research</a>
+          <a href="publications.html" class="py-2 text-gray-600 hover:text-primary">Publications</a>
+          <a href="team.html" class="py-2 text-gray-600 hover:text-primary">Team</a>
+          <a href="calendar.html" class="py-2 text-gray-600 hover:text-primary">Calendar</a>
+          <a href="internal.html" class="py-2 text-gray-600 hover:text-primary">Internal</a>
+          <a href="#contact" class="py-2 text-gray-600 hover:text-primary">Contact</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="relative min-h-[70vh] flex items-center justify-center">
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=1920');"></div>
+    <div class="hero-overlay absolute inset-0"></div>
+    <div class="relative z-10 text-center px-4">
+      <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 tracking-tight">
+        He Lab
+      </h1>
+      <p class="text-xl sm:text-2xl text-white/90 font-light leading-relaxed max-w-2xl mx-auto">
+        School of Life Sciences · Lanzhou University
+      </p>
+      <p class="text-white/80 mt-2 text-sm sm:text-base leading-relaxed">
+        Structural Biology · Multidrug Resistance · Microbe-Phage Interactions
+      </p>
+    </div>
+  </section>
+
+  <!-- About Us -->
+  <section id="about" class="py-16 sm:py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mb-8 pb-3 border-b-4 border-primary w-fit">About Us</h2>
+      <div class="space-y-6 text-gray-700 leading-relaxed text-base">
+        <p>
+          The He Lab at Lanzhou University focuses on understanding the molecular mechanisms of multidrug resistance and microbe-phage interactions. We combine structural biology, biochemistry, and bacterial genetics to address fundamental questions in microbiology.
+        </p>
+        <p>
+          Our research spans bacterial genetics, the biosynthesis of secondary metabolites, and the structural basis of antibiotic resistance. We are affiliated with the MOE Key Laboratory of Cell Activities and Stress Adaptations and the State Key Laboratory of Applied Organic Chemistry.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PI Introduction -->
+  <section id="pi" class="py-16 sm:py-24 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mb-10 pb-3 border-b-4 border-primary w-fit">Principal Investigator</h2>
+      <div class="overflow-hidden">
+        <img src="https://via.placeholder.com/220x280" alt="Prof. Yongxing He" class="rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 w-44 sm:w-52 float-none sm:float-left mx-auto sm:mx-0 block sm:mr-8 mb-6">
+        <div class="space-y-6 text-gray-700 leading-relaxed text-base">
+          <p>
+            Dr. Yongxing He is a Professor in the School of Life Sciences at Lanzhou University. He earned his B.S. (2005) and Ph.D. (2010) from the University of Science and Technology of China (USTC). From 2011 to 2013, he completed his postdoctoral training at the University of California, Berkeley, under the supervision of Prof. John Kuriyan.
+          </p>
+          <p>
+            He joined the faculty of Lanzhou University as an Associate Professor in 2013 and was promoted to full Professor in 2020. He is also affiliated with the MOE Key Laboratory of Cell Activities and Stress Adaptations and the State Key Laboratory of Applied Organic Chemistry.
+          </p>
+          <p>
+            Dr. He's research focuses on bacterial genetics, biochemistry, multidrug resistance, the biosynthesis of secondary metabolites, and structural biology. His lab utilizes structural biology and biochemical techniques to understand the molecular mechanisms of multidrug resistance and microbe-phage interactions.
+          </p>
+          <p>
+            His scientific achievements have been recognized by several honors, including the Gansu Medical Science and Technology Award (First Prize) and the Gansu Provincial Science and Technology Progress Award in 2019.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Publications -->
+  <section id="publications" class="py-16 sm:py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mb-10 pb-3 border-b-4 border-primary w-fit">Featured Publications</h2>
+      <div id="papers-container" class="space-y-6">
+        <!-- Populated by JS from data.js -->
+      </div>
+      <div class="mt-8 text-center">
+        <a href="publications.html" class="inline-flex items-center gap-2 px-6 py-3 rounded border-2 border-primary text-primary font-medium hover:bg-primary hover:text-white transition-colors">
+          <i class="fas fa-list"></i> View All Publications
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Members -->
+  <section id="team" class="py-16 sm:py-24 bg-gray-50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mb-10 pb-3 border-b-4 border-primary w-fit">Team</h2>
+      <div id="team-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <p class="text-gray-500 col-span-full">Loading...</p>
+      </div>
+      <div class="mt-8 text-center">
+        <a href="team.html" class="inline-flex items-center gap-2 text-primary font-medium hover:underline">
+          <i class="fas fa-users"></i> View Full Team
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact" class="bg-primary text-white py-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+        <div>
+          <h3 class="font-serif text-lg font-semibold mb-4 flex items-center gap-2">
+            <i class="fas fa-envelope"></i> Contact
+          </h3>
+          <p class="text-gray-200 text-sm">
+            <a href="mailto:heyx@lzu.edu.cn" class="hover:text-white transition-colors">heyx@lzu.edu.cn</a>
+          </p>
+          <p class="text-gray-200 text-sm mt-2"><i class="fas fa-phone mr-2"></i>+86-931-8912563</p>
+        </div>
+        <div>
+          <h3 class="font-serif text-lg font-semibold mb-4 flex items-center gap-2">
+            <i class="fas fa-map-marker-alt"></i> Address
+          </h3>
+          <p class="text-gray-200 text-sm leading-relaxed">
+            School of Life Sciences, Lanzhou University<br>
+            222 Tianshui South Road, Lanzhou 730000, Gansu, China<br>
+            <span class="text-gray-300">(Office: Tianyan Building 217)</span>
+          </p>
+        </div>
+        <div>
+          <h3 class="font-serif text-lg font-semibold mb-4 flex items-center gap-2">
+            <i class="fas fa-link"></i> Links
+          </h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="https://www.lzu.edu.cn" target="_blank" rel="noopener noreferrer" class="text-gray-200 hover:text-white transition-colors">Lanzhou University</a></li>
+            <li><a href="https://life.lzu.edu.cn" target="_blank" rel="noopener noreferrer" class="text-gray-200 hover:text-white transition-colors">School of Life Sciences</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-10 pt-8 border-t border-gray-600 text-center text-gray-400 text-sm">
+        © 2026 Lanzhou University, He Lab. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts: data.js must load first -->
+  <script src="data.js?v=2"></script>
+  <script>
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+      const menu = document.getElementById('mobile-menu');
+      const icon = this.querySelector('i');
+      menu.classList.toggle('hidden');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    });
+
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.add('hidden');
+        document.querySelector('#mobile-menu-btn i').classList.remove('fa-times');
+        document.querySelector('#mobile-menu-btn i').classList.add('fa-bars');
+      });
+    });
+
+    // 从 Google Sheet 加载 Featured Publications（Featured 列 = yes 的论文）
+    async function loadFeaturedPublications() {
+      const papersContainer = document.getElementById('papers-container');
+      const csvUrl = (typeof PUBLICATIONS_CSV_URL !== 'undefined' && PUBLICATIONS_CSV_URL)
+        ? PUBLICATIONS_CSV_URL
+        : 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQlys1Ph7q5EOqbj6iBMuw_oA0qIl9I81PZl-QftpJW8RcwFjnBouIEAGib_xQlrN9rAIviPoLqJ7Fh/pub?output=csv';
+
+      function parseCSV(csvText) {
+        const lines = csvText.trim().split(/\r?\n/);
+        if (lines.length < 2) return [];
+        function parseRow(line) {
+          const result = [];
+          let current = '';
+          let inQuotes = false;
+          for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+            if (char === '"') {
+              if (inQuotes && line[i + 1] === '"') { current += '"'; i++; }
+              else { inQuotes = !inQuotes; }
+            } else if (char === ',' && !inQuotes) {
+              result.push(current.trim());
+              current = '';
+            } else { current += char; }
+          }
+          result.push(current.trim());
+          return result;
+        }
+        const headers = parseRow(lines[0]).map(h => h.trim());
+        const rows = [];
+        for (let i = 1; i < lines.length; i++) {
+          const values = parseRow(lines[i]);
+          const row = {};
+          headers.forEach((h, idx) => { row[h] = values[idx] !== undefined ? values[idx].trim() : ''; });
+          rows.push(row);
+        }
+        return rows;
+      }
+
+      try {
+        const response = await fetch(csvUrl);
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        let csvText = await response.text();
+        csvText = csvText.replace(/^\uFEFF/, '');
+        const rows = parseCSV(csvText);
+
+        const featured = rows.filter(r => (r.Featured || '').toLowerCase() === 'yes');
+        const sorted = featured.sort((a, b) => (parseInt(b.Year) || 0) - (parseInt(a.Year) || 0));
+
+        papersContainer.innerHTML = '';
+        sorted.forEach((paper) => {
+          const title = (paper.Title || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          const authors = (paper.Authors || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          const journal = (paper.Journal || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          const year = (paper.Year || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          const link = (paper.Link || '').trim();
+          const hasPdf = link && (link.startsWith('http://') || link.startsWith('https://'));
+
+          const titleHtml = hasPdf
+            ? `<a href="${link.replace(/"/g, '&quot;')}" target="_blank" rel="noopener noreferrer" class="font-medium text-gray-900 hover:text-blue-600 hover:underline">${title}</a>`
+            : `<span class="font-medium text-gray-900">${title}</span>`;
+
+          const card = document.createElement('div');
+          card.className = 'paper-card border border-gray-200 rounded-lg p-5 transition-all duration-200';
+          card.innerHTML = `
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+              <div class="flex-1">
+                <h3 class="mb-1">${titleHtml}</h3>
+                <p class="text-gray-600 text-sm mb-1">${authors}</p>
+                <p class="text-gray-500 text-sm">${journal} (${year})</p>
+              </div>
+              ${hasPdf 
+                ? `<a href="${link.replace(/"/g, '&quot;')}" target="_blank" rel="noopener noreferrer" class="pdf-btn inline-flex items-center gap-2 px-4 py-2 rounded text-white text-sm font-medium flex-shrink-0">
+                    <i class="fas fa-file-pdf"></i> PDF
+                   </a>`
+                : `<span class="pdf-btn-placeholder inline-flex items-center gap-2 px-4 py-2 rounded text-sm font-medium flex-shrink-0">
+                    <i class="fas fa-file-pdf"></i> PDF (Coming Soon)
+                   </span>`
+              }
+            </div>
+          `;
+          papersContainer.appendChild(card);
+        });
+
+        if (sorted.length === 0) {
+          papersContainer.innerHTML = '<p class="text-gray-500">暂无精选论文。请在 Google Sheet 的 Featured 列中填写 yes 来标记精选论文。</p>';
+        }
+      } catch (err) {
+        console.error('Featured publications load error:', err);
+        papersContainer.innerHTML = '<p class="text-red-600">加载精选论文失败，请检查网络或稍后重试。</p>';
+      }
+    }
+
+    loadFeaturedPublications();
+
+    // 从 Google Sheet 加载团队成员（仅 Current 成员展示在首页）
+    async function loadTeam() {
+      const teamContainer = document.getElementById('team-container');
+      const csvUrl = typeof TEAM_CSV_URL !== 'undefined' ? TEAM_CSV_URL : '';
+      if (!csvUrl) {
+        teamContainer.innerHTML = '<p class="text-gray-500">请在 data.js 中配置 TEAM_CSV_URL</p>';
+        return;
+      }
+      function parseCSVTeam(csvText) {
+        const lines = csvText.trim().split(/\r?\n/);
+        if (lines.length < 2) return [];
+        function parseRow(line) {
+          const result = [];
+          let current = '';
+          let inQuotes = false;
+          for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+            if (char === '"') {
+              if (inQuotes && line[i + 1] === '"') { current += '"'; i++; }
+              else { inQuotes = !inQuotes; }
+            } else if (char === ',' && !inQuotes) {
+              result.push(current.trim());
+              current = '';
+            } else { current += char; }
+          }
+          result.push(current.trim());
+          return result;
+        }
+        const headers = parseRow(lines[0]).map(h => h.trim());
+        const rows = [];
+        for (let i = 1; i < lines.length; i++) {
+          const values = parseRow(lines[i]);
+          const row = {};
+          headers.forEach((h, idx) => { row[h] = values[idx] !== undefined ? values[idx].trim() : ''; });
+          rows.push(row);
+        }
+        return rows;
+      }
+      try {
+        const response = await fetch(csvUrl);
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        let csvText = await response.text();
+        csvText = csvText.replace(/^\uFEFF/, '');
+        const rows = parseCSVTeam(csvText);
+        const current = rows.filter(r => (r.Status || '').toLowerCase() === 'current');
+        teamContainer.innerHTML = '';
+        current.forEach((m) => {
+          const name = (m.Name || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          const role = (m.Role || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          const program = (m.Program || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          const roleProgram = [role, program].filter(Boolean).join(' · ');
+          const photo = (m.Photo || '').trim();
+          const photoUrl = (photo && (photo.startsWith('http://') || photo.startsWith('https://')))
+            ? photo
+            : 'https://via.placeholder.com/200x240?text=' + encodeURIComponent((m.Name || '?').charAt(0));
+          const card = document.createElement('div');
+          card.className = 'team-card border border-gray-200 rounded-lg overflow-hidden bg-white transition-all duration-200';
+          card.innerHTML = `
+            <div class="team-photo aspect-[5/6] bg-gray-100">
+              <img src="${photoUrl}" alt="${name}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/200x240?text='+encodeURIComponent((this.alt||'?').charAt(0))">
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-gray-900">${name}</h3>
+              <p class="text-gray-600 text-sm mt-1">${roleProgram}</p>
+            </div>
+          `;
+          teamContainer.appendChild(card);
+        });
+        if (current.length === 0) teamContainer.innerHTML = '<p class="text-gray-500">暂无团队成员数据。</p>';
+      } catch (err) {
+        console.error('Team load error:', err);
+        teamContainer.innerHTML = '<p class="text-red-600">加载团队成员失败，请检查网络或稍后重试。</p>';
+      }
+    }
+    loadTeam();
+  </script>
+</body>
+</html>

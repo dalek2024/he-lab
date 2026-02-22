@@ -91,3 +91,52 @@ button:focus-visible {
   border-color: var(--color-primary);
   color: var(--color-primary);
 }
+
+/* --- Navbar Link Dynamic Underline Effect --- */
+.nav-link, .nav-link-active {
+  position: relative;
+  transition: color 0.3s ease;
+  padding-bottom: 2px;
+  display: inline-block;
+}
+
+/* Default state: Gray text, no underline */
+.nav-link {
+  color: #4b5563; /* text-gray-600 */
+}
+
+/* Hover state: Blue text, dynamic underline unfolds from left to right */
+.nav-link:hover {
+  color: #003B70; /* text-blue-900 (兰大深蓝) */
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #003B70;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Active State: Always blue text and underline */
+.nav-link-active {
+  color: #003B70;
+  font-weight: 600;
+}
+
+.nav-link-active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #003B70;
+}
