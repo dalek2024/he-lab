@@ -8,18 +8,18 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            primary: '#003366',
-            'primary-light': '#004080',
+            primary: '#003B70',
+            'primary-light': '#004a8f',
           },
           fontFamily: {
-            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+            serif: ['Merriweather', 'Georgia', 'serif'],
             sans: ['Inter', 'system-ui', 'sans-serif'],
           },
         },
@@ -70,10 +70,10 @@
       <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 tracking-tight">
         He Lab
       </h1>
-      <p class="text-xl sm:text-2xl text-white/90 font-light max-w-2xl mx-auto">
+      <p class="text-xl sm:text-2xl text-white/90 font-light leading-relaxed max-w-2xl mx-auto">
         School of Life Sciences · Lanzhou University
       </p>
-      <p class="text-white/80 mt-2 text-sm sm:text-base">
+      <p class="text-white/80 mt-2 text-sm sm:text-base leading-relaxed">
         Structural Biology · Multidrug Resistance · Microbe-Phage Interactions
       </p>
     </div>
@@ -82,8 +82,8 @@
   <!-- About Us -->
   <section id="about" class="py-16 sm:py-24 bg-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mb-8">About Us</h2>
-      <div class="space-y-4 text-gray-700 leading-relaxed">
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mb-8 pb-3 border-b-4 border-primary w-fit">About Us</h2>
+      <div class="space-y-6 text-gray-700 leading-relaxed text-base">
         <p>
           The He Lab at Lanzhou University focuses on understanding the molecular mechanisms of multidrug resistance and microbe-phage interactions. We combine structural biology, biochemistry, and bacterial genetics to address fundamental questions in microbiology.
         </p>
@@ -97,10 +97,10 @@
   <!-- PI Introduction -->
   <section id="pi" class="py-16 sm:py-24 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mb-10">Principal Investigator</h2>
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mb-10 pb-3 border-b-4 border-primary w-fit">Principal Investigator</h2>
       <div class="overflow-hidden">
-        <img src="https://via.placeholder.com/220x280" alt="Prof. Yongxing He" class="rounded-lg shadow-md w-44 sm:w-52 float-none sm:float-left mx-auto sm:mx-0 block sm:mr-8 mb-6">
-        <div class="space-y-4 text-gray-700 leading-relaxed">
+        <img src="https://via.placeholder.com/220x280" alt="Prof. Yongxing He" class="rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 w-44 sm:w-52 float-none sm:float-left mx-auto sm:mx-0 block sm:mr-8 mb-6">
+        <div class="space-y-6 text-gray-700 leading-relaxed text-base">
           <p>
             Dr. Yongxing He is a Professor in the School of Life Sciences at Lanzhou University. He earned his B.S. (2005) and Ph.D. (2010) from the University of Science and Technology of China (USTC). From 2011 to 2013, he completed his postdoctoral training at the University of California, Berkeley, under the supervision of Prof. John Kuriyan.
           </p>
@@ -121,7 +121,7 @@
   <!-- Featured Publications -->
   <section id="publications" class="py-16 sm:py-24 bg-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mb-10">Featured Publications</h2>
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mb-10 pb-3 border-b-4 border-primary w-fit">Featured Publications</h2>
       <div id="papers-container" class="space-y-6">
         <!-- Populated by JS from data.js -->
       </div>
@@ -136,7 +136,7 @@
   <!-- Team Members -->
   <section id="team" class="py-16 sm:py-24 bg-gray-50">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mb-10">Team</h2>
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mb-10 pb-3 border-b-4 border-primary w-fit">Team</h2>
       <div id="team-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
         <p class="text-gray-500 col-span-full">Loading...</p>
       </div>

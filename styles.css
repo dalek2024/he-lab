@@ -1,13 +1,13 @@
 /**
  * He Lab - Academic Theme Styles
- * 主色调: 深蓝 #003366 + 白色
- * Primary: Deep Blue + White
+ * 主色调: 兰州大学深蓝 #003B70 + 白色
+ * Primary: Lanzhou University Blue + White
  */
 
 :root {
-  --color-primary: #003366;
-  --color-primary-light: #004080;
-  --color-primary-dark: #002244;
+  --color-primary: #003B70;
+  --color-primary-light: #004a8f;
+  --color-primary-dark: #002a50;
   --color-accent: #1a5276;
   --color-text: #1f2937;
   --color-text-muted: #6b7280;
@@ -31,21 +31,21 @@ body {
 .hero-overlay {
   background: linear-gradient(
     to bottom,
-    rgba(0, 51, 102, 0.6) 0%,
-    rgba(0, 51, 102, 0.85) 100%
+    rgba(0, 59, 112, 0.6) 0%,
+    rgba(0, 59, 112, 0.85) 100%
   );
 }
 
 /* Section dividers */
 .section-divider {
-  border-color: rgba(0, 51, 102, 0.15);
+  border-color: rgba(0, 59, 112, 0.15);
 }
 
 /* Academic card hover effect */
 .paper-card:hover,
 .team-card:hover {
   border-color: var(--color-primary);
-  box-shadow: 0 4px 12px rgba(0, 51, 102, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 59, 112, 0.08);
 }
 
 /* PDF button styling */
