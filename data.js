@@ -69,10 +69,10 @@ const PUBLICATIONS = [
 ];
 
 // ============ Google Calendar ============
-// 在 Google Calendar 设置中获取: 设置 → 日历 → 集成日历 → 嵌入代码 或 公开地址
-// Get from Google Calendar: Settings → Your calendar → Integrate calendar → Embed code or Public address
-const GOOGLE_CALENDAR_EMBED_URL = "https://calendar.google.com/calendar/embed?src=344c6ca168b139e4e5f53731c258ca28dafffd7f23ee65f0d69a06469423a9cc%40group.calendar.google.com&ctz=Asia%2FShanghai" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>";  // 嵌入用 iframe src，如 "https://calendar.google.com/calendar/embed?src=xxx"
-const GOOGLE_CALENDAR_LINK_URL = "https://calendar.google.com/calendar/embed?src=344c6ca168b139e4e5f53731c258ca28dafffd7f23ee65f0d69a06469423a9cc%40group.calendar.google.com&ctz=Asia%2FShanghai";  // 点击打开日历的链接，如 "https://calendar.google.com/calendar/u/0?cid=xxx"
+// 在 Google Calendar 设置中获取: 设置 → 日历 → 集成日历 → 嵌入代码（复制 iframe 的 src 属性）
+// Get from Google Calendar: Settings → Your calendar → Integrate calendar → Copy iframe src URL
+const GOOGLE_CALENDAR_EMBED_URL = "https://calendar.google.com/calendar/embed?src=344c6ca168b139e4e5f53731c258ca28dafffd7f23ee65f0d69a06469423a9cc%40group.calendar.google.com&ctz=Asia%2FShanghai";
+const GOOGLE_CALENDAR_LINK_URL = "https://calendar.google.com/calendar/u/0?cid=344c6ca168b139e4e5f53731c258ca28dafffd7f23ee65f0d69a06469423a9cc%40group.calendar.google.com";
 
 // ============ 研究方向 Research Areas ============
 // 每项: title, description, icon (FontAwesome 类名，如 "fa-dna")
