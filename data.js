@@ -83,7 +83,12 @@ const RESEARCH_AREAS = [
   { title: "Secondary Metabolite Biosynthesis", description: "Our lab explores the biosynthesis of natural products in actinomycetes, including polyketide synthases and regulatory mechanisms.", icon: "fa-flask" }
 ];
 
-// ============ 团队成员 Team Members ============
+// ============ 团队成员数据源 Team Data Source ============
+// Google Sheets CSV 链接，表头：Name, Role, Program, Research, Photo, Status
+// Status 填 Current=在职成员，Alumni=已毕业/离组
+const TEAM_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTd6HesDFZBeI_ylZ7jNPrMr1zsvD8hxmkyLheLg7WcuyVIa-y2Hdq5E2wHkkhgzIYn3IPhMDMVOaWa/pub?output=csv';
+
+// ============ 团队成员 Team Members（备用/已弃用） ============
 const TEAM_MEMBERS = [
   { name: "Yongxing He", role: "Principal Investigator / Professor", photo: "", email: "heyx@lzu.edu.cn" },
   { name: "Member A", role: "Postdoctoral Researcher", photo: "", email: "" },

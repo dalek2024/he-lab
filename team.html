@@ -57,9 +57,21 @@
     <h1 class="font-serif text-3xl sm:text-4xl font-bold text-primary mb-2">Team</h1>
     <p class="text-gray-500 text-sm mb-12">Our lab members</p>
 
-    <div id="team-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-      <!-- Populated by JS from data.js -->
-    </div>
+    <!-- Current Members -->
+    <section class="mb-16">
+      <h2 class="font-serif text-2xl font-bold text-primary mb-6">Current Members</h2>
+      <div id="current-members-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <p class="text-gray-500 col-span-full">Loading...</p>
+      </div>
+    </section>
+
+    <!-- Alumni -->
+    <section>
+      <h2 class="font-serif text-2xl font-bold text-primary mb-6">Alumni</h2>
+      <div id="alumni-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <p class="text-gray-500 col-span-full">Loading...</p>
+      </div>
+    </section>
   </main>
 
   <footer class="bg-primary text-white py-12 mt-16">
@@ -88,25 +100,102 @@
 
   <script src="data.js"></script>
   <script>
-    const teamContainer = document.getElementById('team-container');
-    TEAM_MEMBERS.forEach((member) => {
-      const photoUrl = member.photo && member.photo.trim() !== ''
-        ? member.photo
-        : 'https://via.placeholder.com/200x240?text=' + encodeURIComponent(member.name.charAt(0));
+    const TEAM_CSV_SRC = (typeof TEAM_CSV_URL !== 'undefined' ? TEAM_CSV_URL : 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTd6HesDFZBeI_ylZ7jNPrMr1zsvD8hxmkyLheLg7WcuyVIa-y2Hdq5E2wHkkhgzIYn3IPhMDMVOaWa/pub?output=csv');
+
+    function parseCSV(csvText) {
+      const lines = csvText.trim().split(/\r?\n/);
+      if (lines.length < 2) return [];
+      function parseRow(line) {
+        const result = [];
+        let current = '';
+        let inQuotes = false;
+        for (let i = 0; i < line.length; i++) {
+          const char = line[i];
+          if (char === '"') {
+            if (inQuotes && line[i + 1] === '"') { current += '"'; i++; }
+            else { inQuotes = !inQuotes; }
+          } else if (char === ',' && !inQuotes) {
+            result.push(current.trim());
+            current = '';
+          } else { current += char; }
+        }
+        result.push(current.trim());
+        return result;
+      }
+      const headers = parseRow(lines[0]).map(h => h.trim());
+      const rows = [];
+      for (let i = 1; i < lines.length; i++) {
+        const values = parseRow(lines[i]);
+        const row = {};
+        headers.forEach((h, idx) => { row[h] = values[idx] !== undefined ? values[idx].trim() : ''; });
+        rows.push(row);
+      }
+      return rows;
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function renderMemberCard(member) {
+      const name = escapeHtml(member.Name || '');
+      const role = escapeHtml(member.Role || '');
+      const program = escapeHtml(member.Program || '');
+      const research = escapeHtml(member.Research || '');
+      const photo = (member.Photo || '').trim();
+      const isValidPhoto = photo && (photo.startsWith('http://') || photo.startsWith('https://'));
+      const photoUrl = isValidPhoto ? photo : 'https://via.placeholder.com/128?text=' + encodeURIComponent((member.Name || '?').charAt(0));
+      const roleProgram = [role, program].filter(Boolean).join(' · ');
+
       const card = document.createElement('div');
-      card.className = 'team-card border border-gray-200 rounded-lg overflow-hidden bg-white transition-all duration-200';
+      card.className = 'team-card border border-gray-200 rounded-xl overflow-hidden bg-white p-4 sm:p-5 flex flex-col sm:flex-row sm:items-start gap-4 transition-all duration-200 hover:shadow-md';
       card.innerHTML = `
-        <div class="team-photo aspect-[5/6] bg-gray-100">
-          <img src="${photoUrl}" alt="${member.name}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/200x240?text='+encodeURIComponent(this.alt.charAt(0))">
+        <div class="flex-shrink-0 mx-auto sm:mx-0">
+          <img src="${photoUrl}" alt="${name}" class="w-32 h-32 rounded-full object-cover bg-gray-100"
+               onerror="this.src='https://via.placeholder.com/128?text='+encodeURIComponent((this.alt||'?').charAt(0))">
         </div>
-        <div class="p-4">
-          <h3 class="font-semibold text-gray-900">${member.name}</h3>
-          <p class="text-gray-600 text-sm mt-1">${member.role}</p>
-          ${member.email ? `<a href="mailto:${member.email}" class="text-primary text-sm mt-2 inline-block hover:underline"><i class="fas fa-envelope mr-1"></i>Email</a>` : ''}
+        <div class="flex-1 min-w-0 text-center sm:text-left">
+          <h3 class="font-bold text-gray-900">${name}</h3>
+          <p class="text-gray-600 text-sm mt-1">${roleProgram}</p>
+          ${research ? `<p class="text-gray-500 text-sm italic mt-2">${research}</p>` : ''}
         </div>
       `;
-      teamContainer.appendChild(card);
-    });
+      return card;
+    }
+
+    async function loadTeam() {
+      const currentEl = document.getElementById('current-members-container');
+      const alumniEl = document.getElementById('alumni-container');
+
+      try {
+        const response = await fetch(TEAM_CSV_SRC);
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        let csvText = await response.text();
+        csvText = csvText.replace(/^\uFEFF/, '');
+        const rows = parseCSV(csvText);
+
+        const current = rows.filter(r => (r.Status || '').toLowerCase() === 'current');
+        const alumni = rows.filter(r => (r.Status || '').toLowerCase() !== 'current' && (r.Name || '').trim() !== '');
+
+        currentEl.innerHTML = '';
+        current.forEach(m => currentEl.appendChild(renderMemberCard(m)));
+        if (current.length === 0) currentEl.innerHTML = '<p class="text-gray-500 col-span-full">No current members.</p>';
+
+        alumniEl.innerHTML = '';
+        alumni.forEach(m => alumniEl.appendChild(renderMemberCard(m)));
+        if (alumni.length === 0) alumniEl.innerHTML = '<p class="text-gray-500 col-span-full">No alumni yet.</p>';
+
+      } catch (err) {
+        console.error('Team load error:', err);
+        currentEl.innerHTML = '<p class="text-red-600 col-span-full">Failed to load team. Please check your network or try again later.</p>';
+        alumniEl.innerHTML = '';
+      }
+    }
+
+    loadTeam();
 
     document.getElementById('mobile-menu-btn').addEventListener('click', function() {
       const menu = document.getElementById('mobile-menu');
