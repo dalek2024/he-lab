@@ -305,26 +305,81 @@
 
     loadFeaturedPublications();
 
-    // Render team from data.js
-    const teamContainer = document.getElementById('team-container');
-    TEAM_MEMBERS.forEach((member) => {
-      const photoUrl = member.photo && member.photo.trim() !== '' 
-        ? member.photo 
-        : 'https://via.placeholder.com/200x240?text=' + encodeURIComponent(member.name.charAt(0));
-      const card = document.createElement('div');
-      card.className = 'team-card border border-gray-200 rounded-lg overflow-hidden bg-white transition-all duration-200';
-      card.innerHTML = `
-        <div class="team-photo aspect-[5/6] bg-gray-100">
-          <img src="${photoUrl}" alt="${member.name}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/200x240?text='+encodeURIComponent(this.alt.charAt(0))">
-        </div>
-        <div class="p-4">
-          <h3 class="font-semibold text-gray-900">${member.name}</h3>
-          <p class="text-gray-600 text-sm mt-1">${member.role}</p>
-          ${member.email ? `<a href="mailto:${member.email}" class="text-primary text-sm mt-2 inline-block hover:underline"><i class="fas fa-envelope mr-1"></i>Email</a>` : ''}
-        </div>
-      `;
-      teamContainer.appendChild(card);
-    });
+    // 从 Google Sheet 加载团队成员（仅 Current 成员展示在首页）
+    async function loadTeam() {
+      const teamContainer = document.getElementById('team-container');
+      const csvUrl = typeof TEAM_CSV_URL !== 'undefined' ? TEAM_CSV_URL : '';
+      if (!csvUrl) {
+        teamContainer.innerHTML = '<p class="text-gray-500">请在 data.js 中配置 TEAM_CSV_URL</p>';
+        return;
+      }
+      function parseCSVTeam(csvText) {
+        const lines = csvText.trim().split(/\r?\n/);
+        if (lines.length < 2) return [];
+        function parseRow(line) {
+          const result = [];
+          let current = '';
+          let inQuotes = false;
+          for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+            if (char === '"') {
+              if (inQuotes && line[i + 1] === '"') { current += '"'; i++; }
+              else { inQuotes = !inQuotes; }
+            } else if (char === ',' && !inQuotes) {
+              result.push(current.trim());
+              current = '';
+            } else { current += char; }
+          }
+          result.push(current.trim());
+          return result;
+        }
+        const headers = parseRow(lines[0]).map(h => h.trim());
+        const rows = [];
+        for (let i = 1; i < lines.length; i++) {
+          const values = parseRow(lines[i]);
+          const row = {};
+          headers.forEach((h, idx) => { row[h] = values[idx] !== undefined ? values[idx].trim() : ''; });
+          rows.push(row);
+        }
+        return rows;
+      }
+      try {
+        const response = await fetch(csvUrl);
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        let csvText = await response.text();
+        csvText = csvText.replace(/^\uFEFF/, '');
+        const rows = parseCSVTeam(csvText);
+        const current = rows.filter(r => (r.Status || '').toLowerCase() === 'current');
+        teamContainer.innerHTML = '';
+        current.forEach((m) => {
+          const name = (m.Name || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          const role = (m.Role || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          const program = (m.Program || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          const roleProgram = [role, program].filter(Boolean).join(' · ');
+          const photo = (m.Photo || '').trim();
+          const photoUrl = (photo && (photo.startsWith('http://') || photo.startsWith('https://')))
+            ? photo
+            : 'https://via.placeholder.com/200x240?text=' + encodeURIComponent((m.Name || '?').charAt(0));
+          const card = document.createElement('div');
+          card.className = 'team-card border border-gray-200 rounded-lg overflow-hidden bg-white transition-all duration-200';
+          card.innerHTML = `
+            <div class="team-photo aspect-[5/6] bg-gray-100">
+              <img src="${photoUrl}" alt="${name}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/200x240?text='+encodeURIComponent((this.alt||'?').charAt(0))">
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-gray-900">${name}</h3>
+              <p class="text-gray-600 text-sm mt-1">${roleProgram}</p>
+            </div>
+          `;
+          teamContainer.appendChild(card);
+        });
+        if (current.length === 0) teamContainer.innerHTML = '<p class="text-gray-500">暂无团队成员数据。</p>';
+      } catch (err) {
+        console.error('Team load error:', err);
+        teamContainer.innerHTML = '<p class="text-red-600">加载团队成员失败，请检查网络或稍后重试。</p>';
+      }
+    }
+    loadTeam();
   </script>
 </body>
 </html>

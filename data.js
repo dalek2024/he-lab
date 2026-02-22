@@ -88,14 +88,6 @@ const RESEARCH_AREAS = [
 // Status 填 Current=在职成员，Alumni=已毕业/离组
 const TEAM_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTd6HesDFZBeI_ylZ7jNPrMr1zsvD8hxmkyLheLg7WcuyVIa-y2Hdq5E2wHkkhgzIYn3IPhMDMVOaWa/pub?output=csv';
 
-// ============ 团队成员 Team Members（备用/已弃用） ============
-const TEAM_MEMBERS = [
-  { name: "Yongxing He", role: "Principal Investigator / Professor", photo: "", email: "heyx@lzu.edu.cn" },
-  { name: "Member A", role: "Postdoctoral Researcher", photo: "", email: "" },
-  { name: "Member B", role: "Ph.D. Student", photo: "", email: "" },
-  { name: "Member C", role: "Master Student", photo: "", email: "" }
-];
-
 // ============ 内部资源 Internal Links (仅实验室成员) ============
 // 每项: title, url, description (可选)
 const INTERNAL_LINKS = [
