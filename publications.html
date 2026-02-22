@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publications | He Lab - Lanzhou University</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { primary: '#003366', 'primary-light': '#004080' },
+          fontFamily: { serif: ['Cormorant Garamond', 'Georgia', 'serif'], sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    }
+  </script>
+</head>
+<body class="antialiased text-gray-800">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200">
+    <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <a href="index.html" class="font-serif text-xl font-bold text-primary tracking-tight hover:text-primary-light transition-colors">He Lab</a>
+        <div class="hidden md:flex items-center gap-6">
+          <a href="index.html" class="text-gray-600 hover:text-primary transition-colors text-sm">Home</a>
+          <a href="research.html" class="text-gray-600 hover:text-primary transition-colors text-sm">Research</a>
+          <a href="publications.html" class="font-semibold text-primary border-b-2 border-primary pb-0.5 text-sm">Publications</a>
+          <a href="team.html" class="text-gray-600 hover:text-primary transition-colors text-sm">Team</a>
+          <a href="calendar.html" class="text-gray-600 hover:text-primary transition-colors text-sm">Calendar</a>
+          <a href="internal.html" class="text-gray-600 hover:text-primary transition-colors text-sm"><i class="fas fa-lock mr-1"></i>Internal</a>
+          <a href="index.html#contact" class="text-gray-600 hover:text-primary transition-colors text-sm">Contact</a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded text-gray-600 hover:bg-gray-100 focus:outline-none" aria-label="Menu">
+          <i class="fas fa-bars text-lg"></i>
+        </button>
+      </div>
+      <div id="mobile-menu" class="hidden md:hidden pb-4">
+        <div class="flex flex-col gap-1">
+          <a href="index.html" class="py-2 text-gray-600 hover:text-primary">Home</a>
+          <a href="research.html" class="py-2 text-gray-600 hover:text-primary">Research</a>
+          <a href="publications.html" class="py-2 font-semibold text-primary">Publications</a>
+          <a href="team.html" class="py-2 text-gray-600 hover:text-primary">Team</a>
+          <a href="calendar.html" class="py-2 text-gray-600 hover:text-primary">Calendar</a>
+          <a href="internal.html" class="py-2 text-gray-600 hover:text-primary">Internal</a>
+          <a href="index.html#contact" class="py-2 text-gray-600 hover:text-primary">Contact</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+    <!-- Publications Section - 从 Google Sheets CSV 动态加载 -->
+    <section id="publications" class="max-w-4xl mx-auto py-8">
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary">Selected Publications</h2>
+      <div id="publications-container" class="mt-6 space-y-6">
+        Loading publications...
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-primary text-white py-12 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+        <div>
+          <h3 class="font-serif text-lg font-semibold mb-4 flex items-center gap-2"><i class="fas fa-envelope"></i> Contact</h3>
+          <p class="text-gray-200 text-sm"><a href="mailto:heyx@lzu.edu.cn" class="hover:text-white transition-colors">heyx@lzu.edu.cn</a></p>
+          <p class="text-gray-200 text-sm mt-2"><i class="fas fa-phone mr-2"></i>+86-931-8912563</p>
+        </div>
+        <div>
+          <h3 class="font-serif text-lg font-semibold mb-4 flex items-center gap-2"><i class="fas fa-map-marker-alt"></i> Address</h3>
+          <p class="text-gray-200 text-sm leading-relaxed">
+            School of Life Sciences, Lanzhou University<br>222 Tianshui South Road, Lanzhou 730000, Gansu, China<br><span class="text-gray-300">(Office: Tianyan Building 217)</span>
+          </p>
+        </div>
+        <div>
+          <h3 class="font-serif text-lg font-semibold mb-4 flex items-center gap-2"><i class="fas fa-link"></i> Links</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="https://www.lzu.edu.cn" target="_blank" rel="noopener noreferrer" class="text-gray-200 hover:text-white transition-colors">Lanzhou University</a></li>
+            <li><a href="https://life.lzu.edu.cn" target="_blank" rel="noopener noreferrer" class="text-gray-200 hover:text-white transition-colors">School of Life Sciences</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-10 pt-8 border-t border-gray-600 text-center text-gray-400 text-sm">© 2026 Lanzhou University, He Lab. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    /**
+     * ========== 配置：Google Sheets CSV 链接 ==========
+     * 将下方 YOUR_GOOGLE_SHEETS_CSV_LINK_HERE 替换为你的 Google Sheets 发布的 CSV 链接
+     * 获取方式：Google Sheets → 文件 → 共享 → 发布到网页 → 选择「逗号分隔值 (.csv)」→ 复制链接
+     */
+    const CSV_URL = 'YOUR_GOOGLE_SHEETS_CSV_LINK_HERE';
+
+    /**
+     * 稳健的 CSV 解析函数
+     * 正确处理：1) 字段内包含逗号（被双引号包裹） 2) 字段内包含双引号（转义为 ""）
+     * @param {string} csvText - 原始 CSV 文本
+     * @returns {Array<Object>} 解析后的对象数组，键为表头名
+     */
+    function parseCSV(csvText) {
+      const lines = csvText.trim().split(/\r?\n/);
+      if (lines.length < 2) return [];
+
+      // 解析单行：支持引号包裹的字段
+      function parseRow(line) {
+        const result = [];
+        let current = '';
+        let inQuotes = false;
+
+        for (let i = 0; i < line.length; i++) {
+          const char = line[i];
+
+          if (char === '"') {
+            if (inQuotes && line[i + 1] === '"') {
+              current += '"';
+              i++;
+            } else {
+              inQuotes = !inQuotes;
+            }
+          } else if (char === ',' && !inQuotes) {
+            result.push(current.trim());
+            current = '';
+          } else {
+            current += char;
+          }
+        }
+        result.push(current.trim());
+        return result;
+      }
+
+      const headers = parseRow(lines[0]).map(h => h.trim());
+      const rows = [];
+
+      for (let i = 1; i < lines.length; i++) {
+        const values = parseRow(lines[i]);
+        const row = {};
+        headers.forEach((h, idx) => {
+          row[h] = values[idx] !== undefined ? values[idx].trim() : '';
+        });
+        rows.push(row);
+      }
+
+      return rows;
+    }
+
+    /**
+     * 将作者字符串中的导师姓名加粗
+     * 匹配：Yongxing He, Y. He, He Y 等变体
+     */
+    function highlightPIAuthor(authors) {
+      if (!authors) return '';
+      const regex = /(Yongxing\s+He|Y\.\s*He|He\s+Y)(?=[,\s]|$)/gi;
+      return authors.replace(regex, '<strong>$1</strong>');
+    }
+
+    /**
+     * 转义 HTML 防止 XSS
+     */
+    function escapeHtml(str) {
+      if (!str) return '';
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    /**
+     * 主加载逻辑
+     */
+    async function loadPublications() {
+      const container = document.getElementById('publications-container');
+
+      try {
+        const response = await fetch(CSV_URL);
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        let csvText = await response.text();
+        csvText = csvText.replace(/^\uFEFF/, ''); // 移除 BOM（Google Sheets 可能导出）
+        const rows = parseCSV(csvText);
+
+        // 校验表头：期望 Year, Title, Authors, Journal, Link
+        const expectedHeaders = ['Year', 'Title', 'Authors', 'Journal', 'Link'];
+        const firstRow = rows[0];
+        if (!firstRow || !firstRow.hasOwnProperty('Year') || !firstRow.hasOwnProperty('Title')) {
+          throw new Error('CSV 表头格式不正确，请确保第一行为：Year, Title, Authors, Journal, Link');
+        }
+
+        // 按年份降序排列
+        const sorted = [...rows].sort((a, b) => {
+          const yearA = parseInt(a.Year) || 0;
+          const yearB = parseInt(b.Year) || 0;
+          return yearB - yearA;
+        });
+
+        let html = '';
+        sorted.forEach((row) => {
+          const year = escapeHtml(row.Year || '');
+          const title = escapeHtml(row.Title || '');
+          const authors = row.Authors || '';
+          const authorsHighlighted = highlightPIAuthor(escapeHtml(authors));
+          const journal = escapeHtml(row.Journal || '');
+          const link = (row.Link || '').trim();
+          const isValidLink = link && (link.startsWith('http://') || link.startsWith('https://'));
+
+          const titleHtml = isValidLink
+            ? `<a href="${link.replace(/"/g, '&quot;')}" target="_blank" rel="noopener noreferrer" class="font-semibold text-gray-900 hover:text-blue-600 hover:underline">${title}</a>`
+            : `<span class="font-semibold text-gray-900">${title}</span>`;
+
+          html += `
+            <div class="flex gap-4 sm:gap-6 border-b border-gray-200 pb-4 last:border-b-0">
+              <div class="flex-shrink-0 w-14 sm:w-16 text-right">
+                <span class="font-bold text-blue-900">${year}</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="mb-1">${titleHtml}</div>
+                <div class="text-gray-600 text-sm mb-1">${authorsHighlighted}</div>
+                <div class="italic text-gray-700 text-sm">${journal}</div>
+              </div>
+            </div>
+          `;
+        });
+
+        container.innerHTML = html || '<p class="text-gray-500">No publications found.</p>';
+
+      } catch (err) {
+        console.error('Publications load error:', err);
+        container.innerHTML = '<p class="text-red-600">Failed to load publications. Please check your network or try again later.</p>';
+      }
+    }
+
+    // 页面加载时执行
+    loadPublications();
+
+    // 移动端菜单
+    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+      const menu = document.getElementById('mobile-menu');
+      const icon = this.querySelector('i');
+      menu.classList.toggle('hidden');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    });
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.add('hidden');
+        const icon = document.querySelector('#mobile-menu-btn i');
+        if (icon) { icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+/**
+ * He Lab - Academic Theme Styles
+ * 主色调: 深蓝 #003366 + 白色
+ * Primary: Deep Blue + White
+ */
+
+:root {
+  --color-primary: #003366;
+  --color-primary-light: #004080;
+  --color-primary-dark: #002244;
+  --color-accent: #1a5276;
+  --color-text: #1f2937;
+  --color-text-muted: #6b7280;
+  --color-bg: #ffffff;
+  --color-bg-alt: #f8fafc;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+/* Typography */
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text);
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+/* Hero overlay for better text contrast */
+.hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 51, 102, 0.6) 0%,
+    rgba(0, 51, 102, 0.85) 100%
+  );
+}
+
+/* Section dividers */
+.section-divider {
+  border-color: rgba(0, 51, 102, 0.15);
+}
+
+/* Academic card hover effect */
+.paper-card:hover,
+.team-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(0, 51, 102, 0.08);
+}
+
+/* PDF button styling */
+.pdf-btn {
+  background: var(--color-primary);
+  transition: background 0.2s ease;
+}
+
+.pdf-btn:hover {
+  background: var(--color-primary-light);
+}
+
+.pdf-btn-placeholder {
+  background: #e5e7eb;
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+/* Team photo placeholder */
+.team-photo {
+  background: linear-gradient(135deg, #e5e7eb 0%, #f3f4f6 100%);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Pagination */
+.pagination-current {
+  background: var(--color-primary);
+  color: white;
+}
+
+.pagination-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
