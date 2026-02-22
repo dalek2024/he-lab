@@ -4,7 +4,13 @@
  * Simply edit the arrays below to update papers and team members
  */
 
-// ============ 精选论文 Featured Publications ============
+// ============ 论文数据源 Publications Data Source ============
+// Google Sheets CSV 链接，用于 publications 页面和首页 Featured Publications
+// 表头需包含：Year, Title, Authors, Journal, Link, Featured（Featured 列填 yes/no 控制是否在首页精选展示）
+const PUBLICATIONS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQlys1Ph7q5EOqbj6iBMuw_oA0qIl9I81PZl-QftpJW8RcwFjnBouIEAGib_xQlrN9rAIviPoLqJ7Fh/pub?output=csv';
+
+// ============ 精选论文 Featured Publications（备用/已弃用） ============
+// 首页 Featured 现已从 Google Sheet 的 Featured 列动态加载，以下仅作 data.js 兼容保留
 // 首页展示的3篇，可从 PUBLICATIONS 中挑选或单独维护
 // 3 papers for homepage, can pick from PUBLICATIONS or maintain separately
 const FEATURED_PAPERS = [

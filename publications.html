@@ -92,13 +92,9 @@
     </div>
   </footer>
 
+  <script src="data.js"></script>
   <script>
-    /**
-     * ========== 配置：Google Sheets CSV 链接 ==========
-     * 将下方 YOUR_GOOGLE_SHEETS_CSV_LINK_HERE 替换为你的 Google Sheets 发布的 CSV 链接
-     * 获取方式：Google Sheets → 文件 → 共享 → 发布到网页 → 选择「逗号分隔值 (.csv)」→ 复制链接
-     */
-    const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQlys1Ph7q5EOqbj6iBMuw_oA0qIl9I81PZl-QftpJW8RcwFjnBouIEAGib_xQlrN9rAIviPoLqJ7Fh/pub?output=csv';
+    const CSV_URL = typeof PUBLICATIONS_CSV_URL !== 'undefined' ? PUBLICATIONS_CSV_URL : 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQlys1Ph7q5EOqbj6iBMuw_oA0qIl9I81PZl-QftpJW8RcwFjnBouIEAGib_xQlrN9rAIviPoLqJ7Fh/pub?output=csv';
 
     /**
      * 稳健的 CSV 解析函数
@@ -189,11 +185,10 @@
         csvText = csvText.replace(/^\uFEFF/, ''); // 移除 BOM（Google Sheets 可能导出）
         const rows = parseCSV(csvText);
 
-        // 校验表头：期望 Year, Title, Authors, Journal, Link
-        const expectedHeaders = ['Year', 'Title', 'Authors', 'Journal', 'Link'];
+        // 校验表头：期望 Year, Title, Authors, Journal, Link；可选 Featured（yes/no 控制首页精选）
         const firstRow = rows[0];
         if (!firstRow || !firstRow.hasOwnProperty('Year') || !firstRow.hasOwnProperty('Title')) {
-          throw new Error('CSV 表头格式不正确，请确保第一行为：Year, Title, Authors, Journal, Link');
+          throw new Error('CSV 表头格式不正确，请确保第一行为：Year, Title, Authors, Journal, Link（可选 Featured 列填 yes/no）');
         }
 
         // 按年份降序排列

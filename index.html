@@ -208,31 +208,102 @@
       });
     });
 
-    // Render papers from data.js
-    const papersContainer = document.getElementById('papers-container');
-    FEATURED_PAPERS.forEach((paper, i) => {
-      const hasPdf = paper.pdfUrl && paper.pdfUrl.trim() !== '';
-      const card = document.createElement('div');
-      card.className = 'paper-card border border-gray-200 rounded-lg p-5 transition-all duration-200';
-      card.innerHTML = `
-        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-          <div class="flex-1">
-            <h3 class="font-medium text-gray-900 mb-1">${paper.title}</h3>
-            <p class="text-gray-600 text-sm mb-1">${paper.authors}</p>
-            <p class="text-gray-500 text-sm">${paper.journal} (${paper.year})</p>
-          </div>
-          ${hasPdf 
-            ? `<a href="${paper.pdfUrl}" target="_blank" rel="noopener noreferrer" class="pdf-btn inline-flex items-center gap-2 px-4 py-2 rounded text-white text-sm font-medium flex-shrink-0">
-                <i class="fas fa-file-pdf"></i> PDF
-               </a>`
-            : `<span class="pdf-btn-placeholder inline-flex items-center gap-2 px-4 py-2 rounded text-sm font-medium flex-shrink-0">
-                <i class="fas fa-file-pdf"></i> PDF (Coming Soon)
-               </span>`
+    // 从 Google Sheet 加载 Featured Publications（Featured 列 = yes 的论文）
+    async function loadFeaturedPublications() {
+      const papersContainer = document.getElementById('papers-container');
+      const csvUrl = typeof PUBLICATIONS_CSV_URL !== 'undefined' ? PUBLICATIONS_CSV_URL : '';
+
+      if (!csvUrl) {
+        papersContainer.innerHTML = '<p class="text-gray-500">请在 data.js 中配置 PUBLICATIONS_CSV_URL</p>';
+        return;
+      }
+
+      function parseCSV(csvText) {
+        const lines = csvText.trim().split(/\r?\n/);
+        if (lines.length < 2) return [];
+        function parseRow(line) {
+          const result = [];
+          let current = '';
+          let inQuotes = false;
+          for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+            if (char === '"') {
+              if (inQuotes && line[i + 1] === '"') { current += '"'; i++; }
+              else { inQuotes = !inQuotes; }
+            } else if (char === ',' && !inQuotes) {
+              result.push(current.trim());
+              current = '';
+            } else { current += char; }
           }
-        </div>
-      `;
-      papersContainer.appendChild(card);
-    });
+          result.push(current.trim());
+          return result;
+        }
+        const headers = parseRow(lines[0]).map(h => h.trim());
+        const rows = [];
+        for (let i = 1; i < lines.length; i++) {
+          const values = parseRow(lines[i]);
+          const row = {};
+          headers.forEach((h, idx) => { row[h] = values[idx] !== undefined ? values[idx].trim() : ''; });
+          rows.push(row);
+        }
+        return rows;
+      }
+
+      try {
+        const response = await fetch(csvUrl);
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        let csvText = await response.text();
+        csvText = csvText.replace(/^\uFEFF/, '');
+        const rows = parseCSV(csvText);
+
+        const featured = rows.filter(r => (r.Featured || '').toLowerCase() === 'yes');
+        const sorted = featured.sort((a, b) => (parseInt(b.Year) || 0) - (parseInt(a.Year) || 0));
+
+        papersContainer.innerHTML = '';
+        sorted.forEach((paper) => {
+          const title = (paper.Title || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          const authors = (paper.Authors || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          const journal = (paper.Journal || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          const year = (paper.Year || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          const link = (paper.Link || '').trim();
+          const hasPdf = link && (link.startsWith('http://') || link.startsWith('https://'));
+
+          const titleHtml = hasPdf
+            ? `<a href="${link.replace(/"/g, '&quot;')}" target="_blank" rel="noopener noreferrer" class="font-medium text-gray-900 hover:text-blue-600 hover:underline">${title}</a>`
+            : `<span class="font-medium text-gray-900">${title}</span>`;
+
+          const card = document.createElement('div');
+          card.className = 'paper-card border border-gray-200 rounded-lg p-5 transition-all duration-200';
+          card.innerHTML = `
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+              <div class="flex-1">
+                <h3 class="mb-1">${titleHtml}</h3>
+                <p class="text-gray-600 text-sm mb-1">${authors}</p>
+                <p class="text-gray-500 text-sm">${journal} (${year})</p>
+              </div>
+              ${hasPdf 
+                ? `<a href="${link.replace(/"/g, '&quot;')}" target="_blank" rel="noopener noreferrer" class="pdf-btn inline-flex items-center gap-2 px-4 py-2 rounded text-white text-sm font-medium flex-shrink-0">
+                    <i class="fas fa-file-pdf"></i> PDF
+                   </a>`
+                : `<span class="pdf-btn-placeholder inline-flex items-center gap-2 px-4 py-2 rounded text-sm font-medium flex-shrink-0">
+                    <i class="fas fa-file-pdf"></i> PDF (Coming Soon)
+                   </span>`
+              }
+            </div>
+          `;
+          papersContainer.appendChild(card);
+        });
+
+        if (sorted.length === 0) {
+          papersContainer.innerHTML = '<p class="text-gray-500">暂无精选论文。请在 Google Sheet 的 Featured 列中填写 yes 来标记精选论文。</p>';
+        }
+      } catch (err) {
+        console.error('Featured publications load error:', err);
+        papersContainer.innerHTML = '<p class="text-red-600">加载精选论文失败，请检查网络或稍后重试。</p>';
+      }
+    }
+
+    loadFeaturedPublications();
 
     // Render team from data.js
     const teamContainer = document.getElementById('team-container');
